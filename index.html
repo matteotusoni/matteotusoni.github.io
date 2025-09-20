@@ -96,12 +96,49 @@ body{ padding-top: var(--header-h); }
     .pub-title{font-weight:700;margin:.2rem 0 .35rem;font-size:1.05rem}
     .pub-meta{color:var(--muted);font-size:.95rem;margin-bottom:.4rem}
     .btn.small{padding:.45rem .7rem;border-radius:10px;font-size:.9rem}
+    .pub-icon{position:absolute; right:12px; top:12px; width:20px; height:20px; opacity:.85} 
       /* Icon row */
     .icon-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center}
     .icon-btn{width:64px;height:64px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(148,163,184,.35);background:rgba(255,255,255,.03);text-decoration:none;color:var(--fg);transition:transform .08s ease, box-shadow .2s ease, background .2s ease} 
     .icon-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25);background:rgba(255,255,255,.06)}
     .icon-btn svg{display:none}
     .icon-btn img{width:34px;height:34px;display:block;object-fit:contain;filter:none}  
+      /* --- Aurora background upgrade (no external deps) --- */
+    body{ position:relative; background: var(--bg); background-attachment: fixed; }
+    /* subtle grid + soft lighting */
+    body{ background-image:
+        radial-gradient(900px 600px at 15% -10%, rgba(56,189,248,.10), transparent 60%),
+        radial-gradient(900px 600px at 110% 120%, rgba(34,211,238,.10), transparent 60%),
+        linear-gradient( to bottom right, rgba(255,255,255,.03), rgba(255,255,255,0) ),
+        repeating-linear-gradient(0deg, rgba(148,163,184,.06), rgba(148,163,184,.06) 1px, transparent 1px, transparent 32px),
+        repeating-linear-gradient(90deg, rgba(148,163,184,.04), rgba(148,163,184,.04) 1px, transparent 1px, transparent 32px);
+    }
+    body::before{
+      content:""; position:fixed; inset:-20% -10%; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(60% 40% at 20% 20%, rgba(56,189,248,.26), transparent 60%),
+        radial-gradient(50% 50% at 80% 0%, rgba(34,211,238,.22), transparent 60%),
+        radial-gradient(45% 60% at 60% 100%, rgba(147,197,253,.20), transparent 60%);
+      filter: blur(60px); opacity:.6; animation: float-aurora 18s ease-in-out infinite alternate;
+    }
+    @keyframes float-aurora { from{ transform: translate3d(-1%, -1%, 0) scale(1.02);} to{ transform: translate3d(1%, 1%, 0) scale(1.04);} }
+      /* --- Minimal, variable background (lighter, Aldo-style) --- */
+    body{ background: var(--bg); background-attachment: fixed; position: relative; }
+    body::before, body::after{
+      content:""; position: fixed; inset:-20% -10%; pointer-events:none; z-index:-1; filter: blur(60px); opacity:.45;
+      background: radial-gradient(40% 35% at 20% 25%, rgba(56,189,248,.25), transparent 60%),
+                  radial-gradient(35% 40% at 80% 20%, rgba(34,211,238,.22), transparent 60%),
+                  radial-gradient(45% 35% at 60% 80%, rgba(147,197,253,.18), transparent 60%);
+      animation: driftA 28s ease-in-out infinite alternate;
+    }
+    body::after{
+      opacity:.35; filter: blur(80px);
+      background: radial-gradient(30% 30% at 30% 70%, rgba(16,185,129,.18), transparent 60%),
+                  radial-gradient(28% 28% at 85% 60%, rgba(99,102,241,.18), transparent 60%);
+      animation: driftB 36s ease-in-out infinite alternate;
+    }
+    @keyframes driftA { from{ transform: translate3d(-2%, -1%, 0) scale(1.02);} to{ transform: translate3d(2%, 1%, 0) scale(1.04);} }
+    @keyframes driftB { from{ transform: translate3d(1%, -1%, 0) scale(1.03);} to{ transform: translate3d(-1%, 1%, 0) scale(1.05);} }
   </style>
 </head>
 <body>
@@ -142,8 +179,7 @@ body{ padding-top: var(--header-h); }
         </ul>
         <div style="margin-top:1rem">
           <a class="btn primary" href="mailto:matteotusoni@gmail.com">Get in touch</a>
-          <a class="btn ghost" href="#publications" style="margin-left:.5rem">Publications</a>
-        </div>
+          
       </aside>
     </div>
   </main>
@@ -196,28 +232,25 @@ body{ padding-top: var(--header-h); }
     <h2><span class="bar" aria-hidden="true"></span> Publications</h2>
     <div class="pubs">
       <a class="pub-card" href="https://arxiv.org/abs/2507.12257" target="_blank" rel="noopener">
+        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
         <div class="pub-title">Robust Causal Discovery in Real‑World Time Series with Power‑Laws</div>
         <div class="pub-meta">Under review · 2025</div>
         <p>Power‑law spectral features to amplify causal signals across multiple discovery algorithms.</p>
-        <div style="margin-top:.6rem">
-          <a class="btn ghost small" href="/assets/papers/robust-causal-discovery-powerlaws.pdf" target="_blank" rel="noopener">Download PDF</a>
-        </div>
+        
       </a>
       <a class="pub-card" href="https://arxiv.org/abs/2211.00000" target="_blank" rel="noopener">
+        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
         <div class="pub-title">Reconstructing particles in jets using set transformer and hypergraph prediction networks</div>
         <div class="pub-meta">European Physical Journal (Q1) · 2023</div>
         <p>Set‑to‑set neural architectures for particle reconstruction in simulated calorimeters.</p>
-        <div style="margin-top:.6rem">
-          <a class="btn ghost small" href="/assets/papers/particles-jets-hypergraph.pdf" target="_blank" rel="noopener">Download PDF</a>
-        </div>
+        
       </a>
       <a class="pub-card" href="https://arxiv.org/abs/2209.00000" target="_blank" rel="noopener">
+        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
         <div class="pub-title">Configurable calorimeter simulation for AI applications</div>
         <div class="pub-meta">Machine Learning: Science and Technology (Q1) · 2023</div>
         <p>A configurable calorimeter simulation supporting ML for HEP (reconstruction, fast simulation).</p>
-        <div style="margin-top:.6rem">
-          <a class="btn ghost small" href="/assets/papers/configurable-calorimeter-ml.pdf" target="_blank" rel="noopener">Download PDF</a>
-        </div>
+        
       </a>
     </div>
   </section>
@@ -259,11 +292,59 @@ body{ padding-top: var(--header-h); }
     </div>
   </section>
 
-  <section id="skills" class="container section">
+  <section id="skills" class="container section" aria-label="Skills">
     <h2><span class="bar" aria-hidden="true"></span> Skills</h2>
-    <div class="card">
-      <p><strong>Programming:</strong> C, C++, Python, R, Julia · <strong>ML/DS:</strong> PyTorch, TensorFlow, scikit‑learn, Keras · <strong>Tools:</strong> Docker, Git, SQL, MATLAB, Gnuplot, ROOT · <strong>OS:</strong> Linux, macOS, Windows · <strong>Languages:</strong> Italian (native), English (advanced), French (basic).</p>
-      <p style="margin:.6rem 0 0"><strong>GitHub:</strong> <a class="inline" href="https://github.com/matteotusoni" target="_blank" rel="noopener">github.com/matteotusoni</a></p>
+    <style>
+      .skills{display:grid;gap:1rem;align-items:stretch}
+      @media (min-width: 700px){ .skills{grid-template-columns:repeat(2, minmax(0, 1fr));} }
+      .skill-cat{display:flex;flex-direction:column;justify-content:flex-start;height:100%;background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:1rem}
+      .skill-cat h3{margin:.2rem 0 .8rem;font-size:1.05rem}
+      .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
+      .chip{padding:.42rem .7rem;border-radius:999px;border:1px solid rgba(148,163,184,.35);color:var(--fg);background:rgba(255,255,255,.02);font-weight:600;font-size:.92rem}
+      .chip.muted{color:var(--muted)}
+    </style>
+    <div class="skills">
+      <div class="skill-cat">
+        <h3>Programming</h3>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">C</span>
+          <span class="chip">C++</span>
+          <span class="chip">Julia</span>
+          <span class="chip">R</span>
+          <span class="chip">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>ML & Data</h3>
+        <div class="chips">
+          <span class="chip">PyTorch</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">scikit‑learn</span>
+          <span class="chip">Keras</span>
+          <span class="chip">Time‑series</span>
+          <span class="chip">Causal inference</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Systems & Tools</h3>
+        <div class="chips">
+          <span class="chip">Linux</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Git</span>
+          <span class="chip">SQL</span>
+          <span class="chip">ROOT</span>
+          <span class="chip">Gnuplot</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Spoken Languages</h3>
+        <div class="chips">
+          <span class="chip">Italian (native)</span>
+          <span class="chip">English (advanced)</span>
+          <span class="chip muted">French (basic)</span>
+        </div>
+      </div>
     </div>
   </section>
 
