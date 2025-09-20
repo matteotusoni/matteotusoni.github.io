@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Site Under Construction</title>
+  <meta name="description" content="Personal website — coming soon." />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    :root{
+      --bg: #0f172a;      /* slate-900 */
+      --fg: #e2e8f0;      /* slate-200 */
+      --muted:#94a3b8;    /* slate-400 */
+      --card:#111827;     /* gray-900 */
+      --accent:#38bdf8;   /* sky-400 */
+      --accent-2:#22d3ee; /* cyan-400 */
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f8fafc;     /* slate-50 */
+        --fg:#0f172a;     /* slate-900 */
+        --muted:#475569;  /* slate-600 */
+        --card:#ffffff;
+        --accent:#0ea5e9; /* sky-500 */
+        --accent-2:#06b6d4; /* cyan-500 */
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.15), transparent 60%),
+        radial-gradient(1000px 700px at -10% 110%, rgba(34,211,238,.12), transparent 60%),
+        var(--bg);
+      display:grid;
+      place-items:center;
+      padding:2rem;
+      line-height:1.6;
+    }
+    .card{
+      width:min(720px, 96vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:2.2rem 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .tag{
+      display:inline-block;
+      font-size:.75rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,.35);
+      padding:.28rem .6rem;
+      border-radius:999px;
+      margin-bottom:1.1rem;
+      background:rgba(0,0,0,.06);
+    }
+    h1{
+      margin:.2rem 0 .6rem;
+      font-size: clamp(1.6rem, 2.6vw + 1rem, 2.4rem);
+      line-height:1.2;
+    }
+    p.lead{
+      margin:0 0 1.2rem;
+      font-size: clamp(1rem, .5vw + .9rem, 1.15rem);
+      color:var(--muted);
+    }
+    .cta{
+      display:flex;
+      gap:.8rem;
+      flex-wrap:wrap;
+      margin-top:1.2rem;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:.75rem 1rem;
+      border-radius:12px;
+      font-weight:600;
+      text-decoration:none;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:white;
+      box-shadow: 0 8px 24px rgba(34,211,238,.25);
+    }
+    .btn-primary:active{ transform: translateY(1px); }
+    .btn-ghost{
+      background:transparent;
+      color:var(--fg);
+      border:1px solid rgba(148,163,184,.35);
+    }
+    .meta{
+      margin-top:1.2rem;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .art{
+      position:absolute;
+      right:-40px;
+      bottom:-40px;
+      width:220px;
+      opacity:.18;
+      pointer-events:none;
+    }
+    /* simple animation for the crane hook */
+    .hook{ transform-origin: top center; animation: sway 3s ease-in-out infinite alternate; }
+    @keyframes sway { from{ transform: rotate(-6deg); } to{ transform: rotate(6deg);} }
+    footer{
+      margin-top:1.2rem;
+      text-align:center;
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    code{background:rgba(148,163,184,.15); padding:.1rem .35rem; border-radius:6px}
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <span class="tag" aria-hidden="true">Coming Soon</span>
+    <h1 id="title">This site is under construction</h1>
+    <p class="lead">
+      I’m crafting a new personal website. It’ll be simple, fast, and useful—nothing bloated.
+      In the meantime, feel free to reach out or check back shortly.
+    </p>
+
+    <div class="cta">
+      <!-- TODO: replace with your email / socials -->
+      <a class="btn btn-primary" href="mailto:biagiotusoni@gmail.com">Contact me</a>
+      <a class="btn btn-ghost" href="#" onclick="event.preventDefault(); alert('Not live yet!');">Preview not available</a>
+    </div>
+
+    <p class="meta">
+      Tip: if you’re viewing this locally, you can run <code>python -m http.server</code> and open <code>http://localhost:8000</code>
+      to test.
+    </p>
+
+    <!-- Decorative SVG (no external assets) -->
+    <svg class="art" viewBox="0 0 300 300" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1">
+          <stop offset="0%" stop-color="currentColor" />
+          <stop offset="100%" stop-color="currentColor" />
+        </linearGradient>
+      </defs>
+      <!-- Crane arm -->
+      <rect x="30" y="40" width="180" height="10" rx="5" fill="currentColor"/>
+      <rect x="30" y="50" width="10" height="150" rx="5" fill="currentColor"/>
+      <!-- Cable -->
+      <rect x="210" y="50" width="4" height="80" fill="currentColor"/>
+      <!-- Hook -->
+      <g class="hook">
+        <rect x="210" y="120" width="4" height="40" fill="currentColor"/>
+        <path d="M214 160c0 12-10 22-22 22h-6a6 6 0 1 1 0-12h6c5 0 10-5 10-10v-8h12z" fill="currentColor"/>
+      </g>
+      <!-- Cone -->
+      <path d="M60 220h120l-30-80H90l-30 80z" fill="currentColor" opacity=".6"/>
+      <rect x="60" y="220" width="120" height="16" rx="8" fill="currentColor"/>
+    </svg>
+  </main>
+
+  <footer>
+    © <span id="y"></span> <!-- Optional: replace with your name --> Biagio Tusoni
+  </footer>
+
+  <script>
+    // Small nicety: current year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
