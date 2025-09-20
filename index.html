@@ -53,7 +53,8 @@ body{ padding-top: var(--header-h); }
     nav a:hover{color:var(--fg)}
 
     .hero{padding:4.5rem 1rem 2rem}
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
+    .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:2rem;grid-template-areas:'left right';align-items:stretch}   
+    @media (max-width: 960px){ .grid{grid-template-columns:1fr; grid-template-areas:'left' 'right'} } 
     @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
 
     .card{
@@ -101,7 +102,7 @@ body{ padding-top: var(--header-h); }
     .icon-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center}
     .icon-btn{width:64px;height:64px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(148,163,184,.35);background:rgba(255,255,255,.03);text-decoration:none;color:var(--fg);transition:transform .08s ease, box-shadow .2s ease, background .2s ease} 
     .icon-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25);background:rgba(255,255,255,.06)}
-    .icon-btn svg{display:none}
+    .icon-btn svg{width:30px;height:30px;display:block}
     .icon-btn img{width:34px;height:34px;display:block;object-fit:contain;filter:none}  
       /* --- Aurora background upgrade (no external deps) --- */
     body{ position:relative; background: var(--bg); background-attachment: fixed; }
@@ -139,12 +140,22 @@ body{ padding-top: var(--header-h); }
     }
     @keyframes driftA { from{ transform: translate3d(-2%, -1%, 0) scale(1.02);} to{ transform: translate3d(2%, 1%, 0) scale(1.04);} }
     @keyframes driftB { from{ transform: translate3d(1%, -1%, 0) scale(1.03);} to{ transform: translate3d(-1%, 1%, 0) scale(1.05);} }
+      /* Portrait styles */
+    .portrait-card{grid-area:left; margin:0; overflow:visible; position:relative; border-radius:24px; display:flex; flex-direction:column; align-items:center; gap:.8rem; padding:1.2rem}
+    .hero-title{margin:.2rem 0 .4rem; text-align:center}
+    .portrait-frame{position:relative; width:min(260px, 80%); aspect-ratio: 4 / 5; height:auto; border-radius:18px; overflow:hidden; margin:0 auto}
+    .portrait-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%; display:block}
+    .cta-center{display:flex; justify-content:center; margin-top:.6rem}
+    .hero-main{grid-area:right}
+    .portrait-card{grid-area:left}
+      .hero-main .tag{display:block; margin:.2rem auto .9rem; text-align:center; width:fit-content}
+      .hero-main h2{display:block; text-align:center; margin:0 0 .6rem}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span><strong>Matteo Tusoni</strong></a>
+      <a class="brand" href="#about-me"><span class="dot" aria-hidden="true"></span><strong>Matteo Tusoni</strong></a>
       <nav>
         <a href="#about-me">About me</a>
         <a href="#education">Education</a>
@@ -158,38 +169,28 @@ body{ padding-top: var(--header-h); }
   </header>
 <div id="header-spacer" aria-hidden="true"></div>
 
-  <main id="top" class="container hero">
+  <section id="about-me" class="container hero section" aria-label="About me">
     <div class="grid">
-      <section class="card">
-        <span class="tag">PhD — Computer Science, Sapienza</span>
-        <h1>Hi, I’m Matteo Tusoni.</h1>
+      <aside class="card portrait-card">
+        <h1 class="hero-title">Hi, I’m Matteo Tusoni.</h1>
+        <figure class="portrait-frame">
+          <img class="portrait-img" src="/assets/portrait.jpg" alt="Portrait of Matteo Tusoni" loading="lazy" />
+        </figure>
+        <div class="cta-center"><a class="btn primary" href="mailto:matteotusoni@gmail.com">Get in touch</a></div>
+      </aside>
+      <section class="card hero-main">
+        <h2>About me</h2>
         <p class="lead">I work on <strong>causal inference</strong> and <strong>statistical modeling</strong> for <strong>time series</strong>, with applications to <strong>macroeconomics</strong> and <strong>finance</strong>. My background is in theoretical physics; I like connecting rigorous analysis with empirical signals and building lean tools that actually help us reason about complex systems.</p>
-        <div class="kpis">
-          <span class="pill">Rome, Italy</span>
-          <a class="pill inline" href="mailto:matteotusoni@gmail.com">matteotusoni@gmail.com</a>
-          <a class="pill inline" href="https://github.com/matteotusoni" target="_blank" rel="noopener">github.com/matteotusoni</a>
-        </div>
-      </section>
-      <aside class="card">
-        <h2 style="margin-top:0">At a glance</h2>
         <ul class="list" style="list-style:none;padding:0;margin:0">
           <li><strong>Now:</strong> PhD researcher (Sapienza); causal discovery for real-world time series.</li>
           <li><strong>2025:</strong> Applied research at <em>Bank of Italy</em> (macro time series; multi-agent modeling).</li>
           <li><strong>Previously:</strong> Data Science at <em>EY</em> and <em>Leonardo</em>; ATLAS/CERN (Higgs & ML for HEP).</li>
         </ul>
-        <div style="margin-top:1rem">
-          <a class="btn primary" href="mailto:matteotusoni@gmail.com">Get in touch</a>
-          
-      </aside>
-    </div>
-  </main>
-
-  <section id="about-me" class="container section">
-    <h2><span class="bar" aria-hidden="true"></span> About me</h2>
-    <div class="card">
-      <p>My academic journey began in <strong>theoretical physics</strong> (MSc, 110/110 cum laude). I am now pursuing a PhD in Computer Science at <strong>Sapienza University of Rome</strong>, focusing on <strong>causality</strong> in complex, dynamic systems. I approach research as disciplined exploration: blend math, compute, and data; test ideas against reality; iterate.</p>
+      </section>
     </div>
   </section>
+
+  
 
   <section id="education" class="container section">
     <h2><span class="bar" aria-hidden="true"></span> Education</h2>
@@ -354,15 +355,58 @@ body{ padding-top: var(--header-h); }
 
   <div class="container" style="padding:1rem 1rem 0; text-align:center">
     <div class="icon-row" style="justify-content:center;">
-      <div class="icon-btn" title="Email"><img src="/assets/icons/email.svg" alt="Email icon" /></div>
-      <div class="icon-btn" title="GitHub"><img src="/assets/icons/github.svg" alt="GitHub icon" /></div>
-      <div class="icon-btn" title="LinkedIn"><img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" /></div>
-      <div class="icon-btn" title="ORCID"><img src="/assets/icons/orcid.svg" alt="ORCID icon" /></div>
-      <div class="icon-btn" title="ResearchGate"><img src="/assets/icons/researchgate.svg" alt="ResearchGate icon" /></div>
-      <div class="icon-btn" title="X / Twitter"><img src="/assets/icons/x.svg" alt="X icon" /></div>
-      <div class="icon-btn" title="Google Scholar"><img src="/assets/icons/google-scholar.svg" alt="Google Scholar icon" /></div>
-      <div class="icon-btn" title="arXiv"><img src="/assets/icons/arxiv.svg" alt="arXiv icon" /></div>
+      <!-- Email -->
+      <div class="icon-btn" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M2 6h20v12H2V6zm10 6L3.5 8h17L12 12z"/>
+        </svg>
+      </div>
+      <!-- GitHub -->
+      <div class="icon-btn" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.5 3-.5s2 .2 3 .5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/>
+        </svg>
+      </div>
+      <!-- LinkedIn -->
+      <div class="icon-btn" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.8 2.6 4.8 5.9V21h-4v-5.7c0-1.4 0-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3V21H9z"/>
+        </svg>
+      </div>
+      <!-- ORCID -->
+      <div class="icon-btn" title="ORCID" aria-label="ORCID">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" opacity=".15"/>
+          <path d="M9 7h2v10H9zM15.4 10.2A2.8 2.8 0 0 0 12 13v.1a3 3 0 1 0 3-3zm0 3.9a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z"/>
+        </svg>
+      </div>
+      <!-- ResearchGate -->
+      <div class="icon-btn" title="ResearchGate" aria-label="ResearchGate">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" opacity=".15"/>
+          <path d="M8 7h5.2a3.3 3.3 0 1 1 0 6.6H11l2.2 3.4H11L8.8 13H9a2 2 0 0 0 0-4H8V7zm5.2 2H10v2h3.2a1 1 0 1 0 0-2z"/>
+        </svg>
+      </div>
+      <!-- X / Twitter -->
+      <div class="icon-btn" title="X / Twitter" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M14.7 3h3.2l-4.9 5.6L20 21h-6.2l-3.9-6-4.5 6H2.2l5.3-6.9L4 3h6.3l3.5 5.5L14.7 3zM9.4 5.1H7l7.5 11.8h2.4L9.4 5.1z"/>
+        </svg>
+      </div>
+      <!-- Google Scholar -->
+      <div class="icon-btn" title="Google Scholar" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 3 2 9l10 6 10-6-10-6zm0 9.6L6.4 9 12 5.9 17.6 9 12 12.6zM4 19h16v2H4z"/>
+        </svg>
+      </div>
+      <!-- arXiv -->
+      <div class="icon-btn" title="arXiv" aria-label="arXiv">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 6h18l-9 12L3 6zm3 0 6 8 6-8H6z"/>
+        </svg>
+      </div>
     </div>
+  </div>
   </div>
 
   <footer>
