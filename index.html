@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Site Under Construction</title>
-  <meta name="description" content="Personal website — coming soon." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matteo Tusoni — Personal Website</title>
+  <meta name="description" content="Matteo Tusoni — PhD in Computer Science at Sapienza University of Rome. Causal inference, time series, ABM, and statistical modeling." />
   <meta name="theme-color" content="#0f172a" />
   <style>
     :root{
@@ -14,6 +14,7 @@
       --card:#111827;     /* gray-900 */
       --accent:#38bdf8;   /* sky-400 */
       --accent-2:#22d3ee; /* cyan-400 */
+      --ring: rgba(56,189,248,.55);
     }
     @media (prefers-color-scheme: light){
       :root{
@@ -23,159 +24,338 @@
         --card:#ffffff;
         --accent:#0ea5e9; /* sky-500 */
         --accent-2:#06b6d4; /* cyan-500 */
+        --ring: rgba(14,165,233,.5);
       }
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--fg);
       background:
-        radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.15), transparent 60%),
-        radial-gradient(1000px 700px at -10% 110%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.10), transparent 60%),
+        radial-gradient(1000px 700px at -10% 110%, rgba(34,211,238,.10), transparent 60%),
         var(--bg);
-      display:grid;
-      place-items:center;
-      padding:2rem;
-      line-height:1.6;
+      line-height:1.65;
     }
+    .container{max-width:1100px;margin:0 auto;padding:1.2rem 1rem}
+    header{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:saturate(1.1) blur(8px); background: linear-gradient(180deg, rgba(2,6,23,.75), rgba(2,6,23,0)); border-bottom:1px solid rgba(148,163,184,.15);}
+:root{ --header-h: 64px; }
+body{ padding-top: var(--header-h); }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--fg)}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 16px var(--ring)}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;margin:0 .6rem;position:relative}
+    nav a.active{color:var(--fg)}
+    nav a.active::after{content:''; position:absolute; left:0; right:0; bottom:-10px; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:2px; opacity:.9}
+    nav a:hover{color:var(--fg)}
+
+    .hero{padding:4.5rem 1rem 2rem}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
+    @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
+
     .card{
-      width:min(720px, 96vw);
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      backdrop-filter: blur(6px);
       border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      padding:2.2rem 2rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
-      position:relative;
-      overflow:hidden;
+      border-radius:24px; padding:1.6rem; box-shadow:0 20px 60px rgba(0,0,0,.25)
     }
-    .tag{
-      display:inline-block;
-      font-size:.75rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:var(--muted);
-      border:1px solid rgba(148,163,184,.35);
-      padding:.28rem .6rem;
-      border-radius:999px;
-      margin-bottom:1.1rem;
-      background:rgba(0,0,0,.06);
-    }
-    h1{
-      margin:.2rem 0 .6rem;
-      font-size: clamp(1.6rem, 2.6vw + 1rem, 2.4rem);
-      line-height:1.2;
-    }
-    p.lead{
-      margin:0 0 1.2rem;
-      font-size: clamp(1rem, .5vw + .9rem, 1.15rem);
-      color:var(--muted);
-    }
-    .cta{
-      display:flex;
-      gap:.8rem;
-      flex-wrap:wrap;
-      margin-top:1.2rem;
-    }
-    .btn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      padding:.75rem 1rem;
-      border-radius:12px;
-      font-weight:600;
-      text-decoration:none;
-      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .btn-primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:white;
-      box-shadow: 0 8px 24px rgba(34,211,238,.25);
-    }
-    .btn-primary:active{ transform: translateY(1px); }
-    .btn-ghost{
-      background:transparent;
-      color:var(--fg);
-      border:1px solid rgba(148,163,184,.35);
-    }
-    .meta{
-      margin-top:1.2rem;
-      font-size:.9rem;
-      color:var(--muted);
-    }
-    .art{
-      position:absolute;
-      right:-40px;
-      bottom:-40px;
-      width:220px;
-      opacity:.18;
-      pointer-events:none;
-    }
-    /* simple animation for the crane hook */
-    .hook{ transform-origin: top center; animation: sway 3s ease-in-out infinite alternate; }
-    @keyframes sway { from{ transform: rotate(-6deg); } to{ transform: rotate(6deg);} }
-    footer{
-      margin-top:1.2rem;
-      text-align:center;
-      font-size:.85rem;
-      color:var(--muted);
-    }
-    code{background:rgba(148,163,184,.15); padding:.1rem .35rem; border-radius:6px}
+    .tag{display:inline-block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+      border:1px solid rgba(148,163,184,.35);padding:.28rem .6rem;border-radius:999px;margin-bottom:.9rem;background:rgba(0,0,0,.06)}
+    h1{margin:.2rem 0 .6rem;font-size:clamp(1.8rem,2.5vw + 1rem,2.8rem);line-height:1.15}
+    h2{margin:0 0 .6rem;font-size:clamp(1.2rem,1.2vw + .8rem,1.6rem)}
+    p.lead{margin:0 0 1rem;color:var(--muted);font-size:clamp(1rem,.5vw + .9rem,1.15rem)}
+
+    .kpis{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+    .pill{border:1px dashed rgba(148,163,184,.35);color:var(--muted);padding:.35rem .6rem;border-radius:999px;font-size:.9rem}
+
+    .section{padding:2.2rem 1rem; scroll-margin-top: calc(var(--header-h) + 12px);} 
+    .section h2{display:flex;align-items:center;gap:.6rem}
+    .section h2 .bar{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 10px var(--ring)}
+
+    .timeline{display:grid;gap:1rem}
+    .item{background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:18px;padding:1rem}
+    .item h3{margin:.2rem 0 .3rem;font-size:1.05rem}
+    .meta{color:var(--muted);font-size:.95rem}
+
+    .list{display:grid;gap:.8rem}
+    .list li{background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:14px;padding:.8rem}
+
+    .contact{display:grid;gap:.6rem}
+    .btn{display:inline-block;appearance:none;border:none;cursor:pointer;padding:.7rem 1rem;border-radius:12px;font-weight:700;text-decoration:none;transition:transform .08s ease, box-shadow .2s ease, background .2s ease}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;box-shadow:0 8px 24px var(--ring)}
+    .btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(148,163,184,.35)}
+
+    footer{padding:2rem 1rem;color:var(--muted);text-align:center}
+    a.inline{color:inherit;border-bottom:1px dashed rgba(148,163,184,.45);text-decoration:none}
+      /* Publications */
+    .pubs{display:grid;gap:1rem}
+    .pub-card{position:relative;display:block;padding:1rem;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);text-decoration:none;color:inherit;transition:transform .06s ease, box-shadow .2s}
+    .pub-card:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+    .pub-title{font-weight:700;margin:.2rem 0 .35rem;font-size:1.05rem}
+    .pub-meta{color:var(--muted);font-size:.95rem;margin-bottom:.4rem}
+    .btn.small{padding:.45rem .7rem;border-radius:10px;font-size:.9rem}
+      /* Icon row */
+    .icon-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center}
+    .icon-btn{width:64px;height:64px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(148,163,184,.35);background:rgba(255,255,255,.03);text-decoration:none;color:var(--fg);transition:transform .08s ease, box-shadow .2s ease, background .2s ease} 
+    .icon-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25);background:rgba(255,255,255,.06)}
+    .icon-btn svg{display:none}
+    .icon-btn img{width:34px;height:34px;display:block;object-fit:contain;filter:none}  
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <span class="tag" aria-hidden="true">Coming Soon</span>
-    <h1 id="title">This site is under construction</h1>
-    <p class="lead">
-      I’m crafting a new personal website. It’ll be simple, fast, and useful—nothing bloated.
-      In the meantime, feel free to reach out or check back shortly.
-    </p>
-
-    <div class="cta">
-      <!-- TODO: replace with your email / socials -->
-      <a class="btn btn-primary" href="mailto:biagiotusoni@gmail.com">Contact me</a>
-      <a class="btn btn-ghost" href="#" onclick="event.preventDefault(); alert('Not live yet!');">Preview not available</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span><strong>Matteo Tusoni</strong></a>
+      <nav>
+        <a href="#about-me">About me</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#links">Links</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
+<div id="header-spacer" aria-hidden="true"></div>
 
-    <p class="meta">
-      Tip: if you’re viewing this locally, you can run <code>python -m http.server</code> and open <code>http://localhost:8000</code>
-      to test.
-    </p>
-
-    <!-- Decorative SVG (no external assets) -->
-    <svg class="art" viewBox="0 0 300 300" aria-hidden="true">
-      <defs>
-        <linearGradient id="g" x1="0" x2="1">
-          <stop offset="0%" stop-color="currentColor" />
-          <stop offset="100%" stop-color="currentColor" />
-        </linearGradient>
-      </defs>
-      <!-- Crane arm -->
-      <rect x="30" y="40" width="180" height="10" rx="5" fill="currentColor"/>
-      <rect x="30" y="50" width="10" height="150" rx="5" fill="currentColor"/>
-      <!-- Cable -->
-      <rect x="210" y="50" width="4" height="80" fill="currentColor"/>
-      <!-- Hook -->
-      <g class="hook">
-        <rect x="210" y="120" width="4" height="40" fill="currentColor"/>
-        <path d="M214 160c0 12-10 22-22 22h-6a6 6 0 1 1 0-12h6c5 0 10-5 10-10v-8h12z" fill="currentColor"/>
-      </g>
-      <!-- Cone -->
-      <path d="M60 220h120l-30-80H90l-30 80z" fill="currentColor" opacity=".6"/>
-      <rect x="60" y="220" width="120" height="16" rx="8" fill="currentColor"/>
-    </svg>
+  <main id="top" class="container hero">
+    <div class="grid">
+      <section class="card">
+        <span class="tag">PhD — Computer Science, Sapienza</span>
+        <h1>Hi, I’m Matteo Tusoni.</h1>
+        <p class="lead">I work on <strong>causal inference</strong> and <strong>statistical modeling</strong> for <strong>time series</strong>, with applications to <strong>macroeconomics</strong> and <strong>finance</strong>. My background is in theoretical physics; I like connecting rigorous analysis with empirical signals and building lean tools that actually help us reason about complex systems.</p>
+        <div class="kpis">
+          <span class="pill">Rome, Italy</span>
+          <a class="pill inline" href="mailto:matteotusoni@gmail.com">matteotusoni@gmail.com</a>
+          <a class="pill inline" href="https://github.com/matteotusoni" target="_blank" rel="noopener">github.com/matteotusoni</a>
+        </div>
+      </section>
+      <aside class="card">
+        <h2 style="margin-top:0">At a glance</h2>
+        <ul class="list" style="list-style:none;padding:0;margin:0">
+          <li><strong>Now:</strong> PhD researcher (Sapienza); causal discovery for real-world time series.</li>
+          <li><strong>2025:</strong> Applied research at <em>Bank of Italy</em> (macro time series; multi-agent modeling).</li>
+          <li><strong>Previously:</strong> Data Science at <em>EY</em> and <em>Leonardo</em>; ATLAS/CERN (Higgs & ML for HEP).</li>
+        </ul>
+        <div style="margin-top:1rem">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#publications" style="margin-left:.5rem">Publications</a>
+        </div>
+      </aside>
+    </div>
   </main>
 
+  <section id="about-me" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> About me</h2>
+    <div class="card">
+      <p>My academic journey began in <strong>theoretical physics</strong> (MSc, 110/110 cum laude). I am now pursuing a PhD in Computer Science at <strong>Sapienza University of Rome</strong>, focusing on <strong>causality</strong> in complex, dynamic systems. I approach research as disciplined exploration: blend math, compute, and data; test ideas against reality; iterate.</p>
+    </div>
+  </section>
+
+  <section id="education" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> Education</h2>
+    <div class="timeline">
+      <div class="item">
+        <h3>PhD in Computer Science — Sapienza University of Rome</h3>
+        <div class="meta">2024–present · Advisor: Prof. Novella Bartolini · Rome, Italy</div>
+        <p>Research on causal inference for time series and AI methods for financial/macroeconomic data.</p>
+      </div>
+      <div class="item">
+        <h3>MSc in Theoretical Physics — Sapienza University of Rome</h3>
+        <div class="meta">Mar 2023 · 110/110 cum laude · Rome, Italy</div>
+        <p>Thesis: <em>Measuring the beauty and the charm of the Higgs boson</em> (ATLAS/LHC); ML methods for particle-flow reconstruction. Advisors: Prof. Marumi Kado; PhD Francesco Armando Di Bello.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> Research Experience</h2>
+    <div class="timeline">
+      <div class="item">
+        <h3>Bank of Italy — Applied Research Team (PhD Internship)</h3>
+        <div class="meta">2025–present · Rome, Italy</div>
+        <p>Causal inference for macro time series; exploration of multi‑agent models for policy and emergent behavior.</p>
+      </div>
+      <div class="item">
+        <h3>CERN, ATLAS experiment (Intern)</h3>
+        <div class="meta">2022–2023 · Geneva, Switzerland</div>
+        <p>AI for particle detection and detector simulation; contributed to ATLAS analyses of Higgs decays (b̄b, c̄c). Active contributor to ANA‑HIGG‑2020‑20‑INT1.</p>
+      </div>
+      <div class="item">
+        <h3>LNF — Frascati National Labs (Intern)</h3>
+        <div class="meta">2021 · Frascati, Italy</div>
+        <p>Plasma acceleration: interaction of electron beams with ionized gas (SPARC_LAB collaboration).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="container section" aria-label="Publications">
+    <h2><span class="bar" aria-hidden="true"></span> Publications</h2>
+    <div class="pubs">
+      <a class="pub-card" href="https://arxiv.org/abs/2507.12257" target="_blank" rel="noopener">
+        <div class="pub-title">Robust Causal Discovery in Real‑World Time Series with Power‑Laws</div>
+        <div class="pub-meta">Under review · 2025</div>
+        <p>Power‑law spectral features to amplify causal signals across multiple discovery algorithms.</p>
+        <div style="margin-top:.6rem">
+          <a class="btn ghost small" href="/assets/papers/robust-causal-discovery-powerlaws.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </a>
+      <a class="pub-card" href="https://arxiv.org/abs/2211.00000" target="_blank" rel="noopener">
+        <div class="pub-title">Reconstructing particles in jets using set transformer and hypergraph prediction networks</div>
+        <div class="pub-meta">European Physical Journal (Q1) · 2023</div>
+        <p>Set‑to‑set neural architectures for particle reconstruction in simulated calorimeters.</p>
+        <div style="margin-top:.6rem">
+          <a class="btn ghost small" href="/assets/papers/particles-jets-hypergraph.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </a>
+      <a class="pub-card" href="https://arxiv.org/abs/2209.00000" target="_blank" rel="noopener">
+        <div class="pub-title">Configurable calorimeter simulation for AI applications</div>
+        <div class="pub-meta">Machine Learning: Science and Technology (Q1) · 2023</div>
+        <p>A configurable calorimeter simulation supporting ML for HEP (reconstruction, fast simulation).</p>
+        <div style="margin-top:.6rem">
+          <a class="btn ghost small" href="/assets/papers/configurable-calorimeter-ml.pdf" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="workshops" class="container section" aria-label="Workshops">
+    <h2><span class="bar" aria-hidden="true"></span> Workshops</h2>
+    <div class="pubs">
+      <div class="pub-card" role="article" aria-label="Causal Discovery for Stochastic Power‑Law Time Series — AIFIN @ ECAI 2025">
+        <div class="pub-title">Causal Discovery for Stochastic Power‑Law Time Series</div>
+        <div class="pub-meta">AIFIN @ ECAI 2025 (Workshop) · 2025</div>
+        <p>Plug‑in spectral filtering framework with gains on synthetic and real datasets.</p>
+      </div>
+      <div class="pub-card" role="article" aria-label="PLACy — Power‑law Causal Discovery — StatPhys29 Workshop">
+        <div class="pub-title">PLACy — Power‑law Causal Discovery</div>
+        <div class="pub-meta">Complexity in Economics & Finance (StatPhys29 Workshop) · 2025</div>
+        <p>Algorithm and experiments; interpretable frequency‑domain view for noisy series.</p>
+      </div>
+      <div class="pub-card" role="article" aria-label="HGPflow: Particle reconstruction as hyperedge prediction — NeurIPS 2022 Workshop">
+        <div class="pub-title">HGPflow: Particle reconstruction as hyperedge prediction</div>
+        <div class="pub-meta">NeurIPS 2022 Workshop — ML & Physical Sciences · 2022</div>
+        <p>Hypergraph incidence modeling with energy conservation for interpretable momentum estimation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> Professional Experience</h2>
+    <div class="timeline">
+      <div class="item">
+        <h3>EY — Senior Data Scientist</h3>
+        <div class="meta">2024 · Rome, Italy</div>
+        <p>Work for major brands (e.g., Costa Crociere, Barilla) on financial analysis and AI solutions.</p>
+      </div>
+      <div class="item">
+        <h3>Leonardo — Data Scientist & AI Specialist</h3>
+        <div class="meta">2023–2024 · Rome, Italy</div>
+        <p>Projects: GCAP (next‑gen fighter program), EDOCC (defence cloud), ChatBot & forecasting, quantum annealing for traffic minimization.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> Skills</h2>
+    <div class="card">
+      <p><strong>Programming:</strong> C, C++, Python, R, Julia · <strong>ML/DS:</strong> PyTorch, TensorFlow, scikit‑learn, Keras · <strong>Tools:</strong> Docker, Git, SQL, MATLAB, Gnuplot, ROOT · <strong>OS:</strong> Linux, macOS, Windows · <strong>Languages:</strong> Italian (native), English (advanced), French (basic).</p>
+      <p style="margin:.6rem 0 0"><strong>GitHub:</strong> <a class="inline" href="https://github.com/matteotusoni" target="_blank" rel="noopener">github.com/matteotusoni</a></p>
+    </div>
+  </section>
+
+  <section id="links" class="container section" aria-label="Links" style="text-align:center">
+    <h2><span class="bar" aria-hidden="true"></span> Find me online</h2>
+    <div class="card">
+      <div class="icon-row">
+        <!-- Email -->
+        <a class="icon-btn" href="mailto:matteotusoni@gmail.com" aria-label="Email" title="Email">
+          <img src="/assets/icons/email.png" alt="Email icon" />
+        </a>
+        <!-- GitHub -->
+        <a class="icon-btn" href="https://github.com/matteotusoni" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <img src="/assets/icons/github.png" alt="GitHub icon" />
+        </a>
+        <!-- LinkedIn -->
+        <a class="icon-btn" href="https://www.linkedin.com/in/matteotusoni" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <img src="/assets/icons/linkedin.png" alt="LinkedIn icon" />
+        </a>
+        <!-- ORCID -->
+        <a class="icon-btn" href="https://orcid.org/0000-0000-0000-0000" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
+          <img src="/assets/icons/orcid.png" alt="ORCID icon" />
+        </a>
+        <!-- ResearchGate -->
+        <a class="icon-btn" href="https://www.researchgate.net/" target="_blank" rel="noopener" aria-label="ResearchGate" title="ResearchGate">
+          <img src="/assets/icons/researchgate.png" alt="ResearchGate icon" />
+        </a>
+        <!-- X/Twitter -->
+        <a class="icon-btn" href="https://x.com/USERNAME" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)">
+          <img src="/assets/icons/x.png" alt="X icon" />
+        </a>
+        <!-- Google Scholar -->
+        <a class="icon-btn" href="https://scholar.google.com/citations?user=XXXX" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+          <img src="/assets/icons/google-scholar.png" alt="Google Scholar icon" />
+        </a>
+        <!-- arXiv -->
+        <a class="icon-btn" href="https://arxiv.org/a/XXXX" target="_blank" rel="noopener" aria-label="arXiv" title="arXiv">
+          <img src="/assets/icons/arxiv.png" alt="arXiv icon" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container section">
+    <h2><span class="bar" aria-hidden="true"></span> Contact</h2>
+    <div class="card contact">
+      <p><strong>Email:</strong> <a class="inline" href="mailto:matteotusoni@gmail.com">matteotusoni@gmail.com</a></p>
+      <p><strong>Location:</strong> Rome, Italy · <strong>Phone:</strong> +39 324 600 7226</p>
+      <div>
+        <a class="btn primary" href="mailto:matteotusoni@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://github.com/matteotusoni" target="_blank" rel="noopener" style="margin-left:.6rem">GitHub</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    © <span id="y"></span> <!-- Optional: replace with your name --> Biagio Tusoni
+    © <span id="y"></span> · Matteo Tusoni
   </footer>
 
   <script>
-    // Small nicety: current year in footer
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Adjust header spacer dynamically & add active section highlight + scroll offsets
+    const header = document.querySelector('header');
+    const spacer = document.getElementById('header-spacer');
+    function setHeaderHeight(){
+      const h = header.offsetHeight || 64;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+      if(spacer) spacer.style.height = h + 'px';
+      // ensure titles land below the header
+      document.querySelectorAll('.section').forEach(sec=>{
+        sec.style.scrollMarginTop = (h + 12) + 'px';
+      });
+    }
+    window.addEventListener('load', setHeaderHeight);
+    window.addEventListener('resize', setHeaderHeight);
+
+    // Scrollspy: highlight current section link
+    const links = Array.from(document.querySelectorAll('header nav a'));
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        const id = '#' + e.target.id;
+        const link = map.get(id);
+        if(!link) return;
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))+10}px 0px -60% 0px`, threshold: 0.1});
+    document.querySelectorAll('section[id]').forEach(sec=>observer.observe(sec));
   </script>
 </body>
 </html>
