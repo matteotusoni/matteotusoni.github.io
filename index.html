@@ -3,447 +3,787 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matteo Tusoni — Personal Website</title>
-  <meta name="description" content="Matteo Tusoni — PhD in Computer Science at Sapienza University of Rome. Causal inference, time series, ABM, and statistical modeling." />
-  <meta name="theme-color" content="#0f172a" />
+  <title>Matteo Tusoni | PhD Researcher in Computer Science</title>
+  <meta
+    name="description"
+    content="Personal website of Matteo Tusoni, PhD researcher in computer science working on causal inference, financial time series, and scientific machine learning."
+  />
+  <meta name="theme-color" content="#f3efe6" />
   <style>
     :root{
-      --bg: #0f172a;      /* slate-900 */
-      --fg: #e2e8f0;      /* slate-200 */
-      --muted:#94a3b8;    /* slate-400 */
-      --card:#111827;     /* gray-900 */
-      --accent:#38bdf8;   /* sky-400 */
-      --accent-2:#22d3ee; /* cyan-400 */
-      --ring: rgba(56,189,248,.55);
+      --paper:#f3efe6;
+      --paper-strong:#ede6d8;
+      --surface:#fffdf8;
+      --surface-alt:#f7f2e7;
+      --ink:#1f2430;
+      --muted:#5f6775;
+      --line:#d8cfbf;
+      --accent:#304c6b;
+      --accent-soft:#dbe6f0;
+      --maxw:1120px;
+      --radius:18px;
+      --shadow:0 20px 45px rgba(45, 44, 39, 0.08);
+      --sans:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+      --serif:"Baskerville","Libre Baskerville","Palatino Linotype",Georgia,serif;
     }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#f8fafc;     /* slate-50 */
-        --fg:#0f172a;     /* slate-900 */
-        --muted:#475569;  /* slate-600 */
-        --card:#ffffff;
-        --accent:#0ea5e9; /* sky-500 */
-        --accent-2:#06b6d4; /* cyan-500 */
-        --ring: rgba(14,165,233,.5);
-      }
-    }
+
     *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--fg);
+      color:var(--ink);
       background:
-        radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.10), transparent 60%),
-        radial-gradient(1000px 700px at -10% 110%, rgba(34,211,238,.10), transparent 60%),
-        var(--bg);
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0)),
+        var(--paper);
+      font-family:var(--sans);
       line-height:1.65;
     }
-    .container{max-width:1100px;margin:0 auto;padding:1.2rem 1rem}
-    header{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:saturate(1.1) blur(8px); background: linear-gradient(180deg, rgba(2,6,23,.75), rgba(2,6,23,0)); border-bottom:1px solid rgba(148,163,184,.15);}
-:root{ --header-h: 64px; }
-body{ padding-top: var(--header-h); }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--fg)}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 16px var(--ring)}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600;margin:0 .6rem;position:relative}
-    nav a.active{color:var(--fg)}
-    nav a.active::after{content:''; position:absolute; left:0; right:0; bottom:-10px; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:2px; opacity:.9}
-    nav a:hover{color:var(--fg)}
 
-    .hero{padding:4.5rem 1rem 2rem}
-    .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:2rem;grid-template-areas:'left right';align-items:stretch}   
-    @media (max-width: 960px){ .grid{grid-template-columns:1fr; grid-template-areas:'left' 'right'} } 
-    @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
+    a{color:var(--accent)}
+    img{display:block;max-width:100%}
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px; padding:1.6rem; box-shadow:0 20px 60px rgba(0,0,0,.25)
+    .container{
+      width:min(calc(100% - 4rem), var(--maxw));
+      margin:0 auto;
     }
-    .tag{display:inline-block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
-      border:1px solid rgba(148,163,184,.35);padding:.28rem .6rem;border-radius:999px;margin-bottom:.9rem;background:rgba(0,0,0,.06)}
-    h1{margin:.2rem 0 .6rem;font-size:clamp(1.8rem,2.5vw + 1rem,2.8rem);line-height:1.15}
-    h2{margin:0 0 .6rem;font-size:clamp(1.2rem,1.2vw + .8rem,1.6rem)}
-    p.lead{margin:0 0 1rem;color:var(--muted);font-size:clamp(1rem,.5vw + .9rem,1.15rem)}
 
-    .kpis{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
-    .pill{border:1px dashed rgba(148,163,184,.35);color:var(--muted);padding:.35rem .6rem;border-radius:999px;font-size:.9rem}
-
-    .section{padding:2.2rem 1rem; scroll-margin-top: calc(var(--header-h) + 12px);} 
-    .section h2{display:flex;align-items:center;gap:.6rem}
-    .section h2 .bar{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 10px var(--ring)}
-
-    .timeline{display:grid;gap:1rem}
-    .item{background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:18px;padding:1rem}
-    .item h3{margin:.2rem 0 .3rem;font-size:1.05rem}
-    .meta{color:var(--muted);font-size:.95rem}
-
-    .list{display:grid;gap:.8rem}
-    .list li{background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:14px;padding:.8rem}
-
-    .contact{display:grid;gap:.6rem}
-    .btn{display:inline-block;appearance:none;border:none;cursor:pointer;padding:.7rem 1rem;border-radius:12px;font-weight:700;text-decoration:none;transition:transform .08s ease, box-shadow .2s ease, background .2s ease}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;box-shadow:0 8px 24px var(--ring)}
-    .btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(148,163,184,.35)}
-
-    footer{padding:2rem 1rem;color:var(--muted);text-align:center}
-    a.inline{color:inherit;border-bottom:1px dashed rgba(148,163,184,.45);text-decoration:none}
-      /* Publications */
-    .pubs{display:grid;gap:1rem}
-    .pub-card{position:relative;display:block;padding:1rem;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);text-decoration:none;color:inherit;transition:transform .06s ease, box-shadow .2s}
-    .pub-card:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
-    .pub-title{font-weight:700;margin:.2rem 0 .35rem;font-size:1.05rem}
-    .pub-meta{color:var(--muted);font-size:.95rem;margin-bottom:.4rem}
-    .btn.small{padding:.45rem .7rem;border-radius:10px;font-size:.9rem}
-    .pub-icon{position:absolute; right:12px; top:12px; width:20px; height:20px; opacity:.85} 
-      /* Icon row */
-    .icon-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center}
-    .icon-btn{width:64px;height:64px;display:grid;place-items:center;border-radius:999px;border:1px solid rgba(148,163,184,.35);background:rgba(255,255,255,.03);text-decoration:none;color:var(--fg);transition:transform .08s ease, box-shadow .2s ease, background .2s ease} 
-    .icon-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.25);background:rgba(255,255,255,.06)}
-    .icon-btn svg{width:30px;height:30px;display:block}
-    .icon-btn img{width:34px;height:34px;display:block;object-fit:contain;filter:none}  
-      /* --- Aurora background upgrade (no external deps) --- */
-    body{ position:relative; background: var(--bg); background-attachment: fixed; }
-    /* subtle grid + soft lighting */
-    body{ background-image:
-        radial-gradient(900px 600px at 15% -10%, rgba(56,189,248,.10), transparent 60%),
-        radial-gradient(900px 600px at 110% 120%, rgba(34,211,238,.10), transparent 60%),
-        linear-gradient( to bottom right, rgba(255,255,255,.03), rgba(255,255,255,0) ),
-        repeating-linear-gradient(0deg, rgba(148,163,184,.06), rgba(148,163,184,.06) 1px, transparent 1px, transparent 32px),
-        repeating-linear-gradient(90deg, rgba(148,163,184,.04), rgba(148,163,184,.04) 1px, transparent 1px, transparent 32px);
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(243, 239, 230, 0.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(216, 207, 191, 0.9);
     }
-    body::before{
-      content:""; position:fixed; inset:-20% -10%; z-index:-1; pointer-events:none;
-      background:
-        radial-gradient(60% 40% at 20% 20%, rgba(56,189,248,.26), transparent 60%),
-        radial-gradient(50% 50% at 80% 0%, rgba(34,211,238,.22), transparent 60%),
-        radial-gradient(45% 60% at 60% 100%, rgba(147,197,253,.20), transparent 60%);
-      filter: blur(60px); opacity:.6; animation: float-aurora 18s ease-in-out infinite alternate;
+
+    .site-header .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      min-height:74px;
     }
-    @keyframes float-aurora { from{ transform: translate3d(-1%, -1%, 0) scale(1.02);} to{ transform: translate3d(1%, 1%, 0) scale(1.04);} }
-      /* --- Minimal, variable background (lighter, Aldo-style) --- */
-    body{ background: var(--bg); background-attachment: fixed; position: relative; }
-    body::before, body::after{
-      content:""; position: fixed; inset:-20% -10%; pointer-events:none; z-index:-1; filter: blur(60px); opacity:.45;
-      background: radial-gradient(40% 35% at 20% 25%, rgba(56,189,248,.25), transparent 60%),
-                  radial-gradient(35% 40% at 80% 20%, rgba(34,211,238,.22), transparent 60%),
-                  radial-gradient(45% 35% at 60% 80%, rgba(147,197,253,.18), transparent 60%);
-      animation: driftA 28s ease-in-out infinite alternate;
+
+    .brand{
+      color:var(--ink);
+      text-decoration:none;
     }
-    body::after{
-      opacity:.35; filter: blur(80px);
-      background: radial-gradient(30% 30% at 30% 70%, rgba(16,185,129,.18), transparent 60%),
-                  radial-gradient(28% 28% at 85% 60%, rgba(99,102,241,.18), transparent 60%);
-      animation: driftB 36s ease-in-out infinite alternate;
+
+    .brand strong{
+      display:block;
+      font-family:var(--serif);
+      font-size:1.2rem;
+      font-weight:700;
+      letter-spacing:.01em;
     }
-    @keyframes driftA { from{ transform: translate3d(-2%, -1%, 0) scale(1.02);} to{ transform: translate3d(2%, 1%, 0) scale(1.04);} }
-    @keyframes driftB { from{ transform: translate3d(1%, -1%, 0) scale(1.03);} to{ transform: translate3d(-1%, 1%, 0) scale(1.05);} }
-      /* Portrait styles */
-    .portrait-card{grid-area:left; margin:0; overflow:visible; position:relative; border-radius:24px; display:flex; flex-direction:column; align-items:center; gap:.8rem; padding:1.2rem}
-    .hero-title{margin:.2rem 0 .4rem; text-align:center}
-    .portrait-frame{position:relative; width:min(260px, 80%); aspect-ratio: 4 / 5; height:auto; border-radius:18px; overflow:hidden; margin:0 auto}
-    .portrait-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%; display:block}
-    .cta-center{display:flex; justify-content:center; margin-top:.6rem}
-    .hero-main{grid-area:right}
-    .portrait-card{grid-area:left}
-      .hero-main .tag{display:block; margin:.2rem auto .9rem; text-align:center; width:fit-content}
-      .hero-main h2{display:block; text-align:center; margin:0 0 .6rem}
+
+    .brand span{
+      display:block;
+      color:var(--muted);
+      font-size:.85rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.85rem 1.15rem;
+    }
+
+    .nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:.94rem;
+      padding-bottom:.3rem;
+      border-bottom:2px solid transparent;
+      transition:color .2s ease, border-color .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      color:var(--ink);
+      border-color:var(--accent);
+    }
+
+    main{
+      padding:2rem 0 4rem;
+    }
+
+    .hero{
+      padding:1.2rem 0 2.6rem;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap:1.5rem;
+      align-items:start;
+    }
+
+    .hero-copy,
+    .panel,
+    .timeline-item,
+    .publication{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-copy{
+      padding:2rem;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      background:var(--surface-alt);
+      color:var(--muted);
+      border:1px solid var(--line);
+      font-size:.78rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    h1,
+    h2,
+    h3{
+      margin:0;
+      font-family:var(--serif);
+      line-height:1.05;
+      font-weight:700;
+    }
+
+    h1{
+      margin-top:1rem;
+      font-size:clamp(2.7rem, 5vw, 4.8rem);
+      max-width:11ch;
+    }
+
+    .hero-lead{
+      margin:1.2rem 0 0;
+      max-width:62ch;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.9rem;
+      margin-top:1.5rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:.78rem 1.1rem;
+      border-radius:999px;
+      text-decoration:none;
+      border:1px solid var(--accent);
+      transition:background .2s ease, color .2s ease, transform .2s ease;
+      font-weight:600;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#f7f6f3;
+    }
+
+    .btn-secondary{
+      background:transparent;
+      color:var(--accent);
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.7rem 1.2rem;
+      margin-top:1.2rem;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .hero-aside{
+      display:grid;
+      gap:1rem;
+    }
+
+    .portrait-card{
+      overflow:hidden;
+    }
+
+    .portrait-card img{
+      width:100%;
+      aspect-ratio:4 / 5;
+      object-fit:cover;
+      object-position:center 24%;
+      background:var(--paper-strong);
+    }
+
+    .portrait-copy{
+      padding:1rem 1.1rem 1.2rem;
+      border-top:1px solid var(--line);
+    }
+
+    .portrait-copy strong{
+      display:block;
+      font-size:1.05rem;
+    }
+
+    .portrait-copy span{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .panel{
+      padding:1.2rem;
+    }
+
+    .section{
+      padding:1rem 0 2.4rem;
+      scroll-margin-top:88px;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:220px minmax(0, 1fr);
+      gap:1.2rem;
+      margin-bottom:1.2rem;
+      align-items:start;
+    }
+
+    .section-head span{
+      color:var(--muted);
+      font-size:.84rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .section-head p{
+      margin:.35rem 0 0;
+      color:var(--muted);
+      max-width:64ch;
+    }
+
+    .grid-2,
+    .grid-3{
+      display:grid;
+      gap:1rem;
+    }
+
+    .grid-2{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    .grid-3{grid-template-columns:repeat(3, minmax(0, 1fr))}
+
+    .card-title{
+      font-size:1.3rem;
+    }
+
+    .card-subtitle{
+      margin-top:.35rem;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .list{
+      margin:.9rem 0 0;
+      padding-left:1.1rem;
+      color:var(--muted);
+    }
+
+    .list li + li{
+      margin-top:.45rem;
+    }
+
+    .timeline{
+      display:grid;
+      gap:.9rem;
+    }
+
+    .timeline-item{
+      padding:1.15rem 1.25rem;
+      display:grid;
+      grid-template-columns:170px minmax(0, 1fr);
+      gap:1rem;
+    }
+
+    .timeline-date{
+      color:var(--muted);
+      font-size:.9rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .timeline-item p{
+      margin:.45rem 0 0;
+      color:var(--muted);
+    }
+
+    .publication{
+      padding:1.2rem;
+    }
+
+    .publication .year{
+      color:var(--muted);
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .publication p{
+      margin:.65rem 0 0;
+      color:var(--muted);
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      margin-top:1rem;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:.38rem .72rem;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--surface-alt);
+      color:var(--ink);
+      font-size:.9rem;
+    }
+
+    .footer{
+      padding:0 0 2.5rem;
+      color:var(--muted);
+      text-align:center;
+      font-size:.93rem;
+    }
+
+    [data-reveal]{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+
+    [data-reveal].is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width: 960px){
+      .hero-grid,
+      .section-head,
+      .timeline-item{
+        grid-template-columns:1fr;
+      }
+
+      .grid-3{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 740px){
+      .site-header .container{
+        padding:.9rem 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .hero-copy,
+      .panel,
+      .publication,
+      .timeline-item{
+        padding:1.1rem;
+      }
+
+      .grid-2,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 560px){
+      .container{
+        width:min(calc(100% - 1.2rem), var(--maxw));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      [data-reveal]{
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+      .btn{transition:none}
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#about-me"><span class="dot" aria-hidden="true"></span><strong>Matteo Tusoni</strong></a>
-      <nav>
-        <a href="#about-me">About me</a>
-        <a href="#education">Education</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Matteo Tusoni home">
+        <strong>Matteo Tusoni</strong>
+        <span>PhD Researcher in Computer Science</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About Me</a>
         <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#workshops">Workshops</a>
         <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#skills">Skills</a>
       </nav>
     </div>
   </header>
-<div id="header-spacer" aria-hidden="true"></div>
 
-  <section id="about-me" class="container hero section" aria-label="About me">
-    <div class="grid">
-      <aside class="card portrait-card">
-        <h1 class="hero-title">Hi, I’m Matteo Tusoni.</h1>
-        <figure class="portrait-frame">
-          <img class="portrait-img" src="/assets/portrait.jpg" alt="Portrait of Matteo Tusoni" loading="lazy" />
-        </figure>
-        <div class="cta-center"><a class="btn primary" href="mailto:matteotusoni@gmail.com">Get in touch</a></div>
-      </aside>
-      <section class="card hero-main">
-        <h2>About me</h2>
-        <p class="lead">I work on <strong>causal inference</strong> and <strong>statistical modeling</strong> for <strong>time series</strong>, with applications to <strong>macroeconomics</strong> and <strong>finance</strong>. My background is in theoretical physics; I like connecting rigorous analysis with empirical signals and building lean tools that actually help us reason about complex systems.</p>
-        <ul class="list" style="list-style:none;padding:0;margin:0">
-          <li><strong>Now:</strong> PhD researcher (Sapienza); causal discovery for real-world time series.</li>
-          <li><strong>2025:</strong> Applied research at <em>Bank of Italy</em> (macro time series; multi-agent modeling).</li>
-          <li><strong>Previously:</strong> Data Science at <em>EY</em> and <em>Leonardo</em>; ATLAS/CERN (Higgs & ML for HEP).</li>
-        </ul>
-      </section>
-    </div>
-  </section>
+  <main id="top">
+    <section id="about" class="hero">
+      <div class="container hero-grid">
+        <article class="hero-copy" data-reveal>
+          <span class="eyebrow">Rome, Italy &middot; Oxford, UK</span>
+          <h1>Researching causality in financial complex time series.</h1>
+          <p class="hero-lead">
+            I am Matteo Tusoni, a PhD researcher in Computer Science at Sapienza University of Rome.
+            My background is in theoretical physics, and my current work focuses on causal inference,
+            financial time series, and rigorous methods for understanding complex systems in macroeconomics and finance.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:matteotusoni@gmail.com">Email me</a>
+            <a class="btn btn-secondary" href="MatteoTusoni_CV.pdf" download>Download CV</a>
+          </div>
+          <div class="meta-row">
+            <span><a href="mailto:matteotusoni@gmail.com">matteotusoni@gmail.com</a></span>
+            <span>Rome, Italy</span>
+            <span>Open to research collaborations and AI opportunities</span>
+          </div>
+        </article>
 
-  
+        <aside class="hero-aside" data-reveal>
+          <article class="panel portrait-card">
+            <img src="assets/FotoProfilo.jpg" alt="Portrait of Matteo Tusoni" />
+            <div class="portrait-copy">
+              <strong>Matteo Tusoni</strong>
+              <span>PhD Researcher in Computer Science</span>
+            </div>
+          </article>
 
-  <section id="education" class="container section">
-    <h2><span class="bar" aria-hidden="true"></span> Education</h2>
-    <div class="timeline">
-      <div class="item">
-        <h3>PhD in Computer Science — Sapienza University of Rome</h3>
-        <div class="meta">2024–present · Advisor: Prof. Novella Bartolini · Rome, Italy</div>
-        <p>Research on causal inference for time series and AI methods for financial/macroeconomic data.</p>
+          <article class="panel">
+            <h3 class="card-title">Current focus</h3>
+            <p class="card-subtitle">
+              Developing advanced AI methodologies to uncover causality in time series data,
+              with particular attention to financial markets and economic systems. Developing
+              agentic AI simulations for financial markets and new agentic AI techniques to
+              emulate real data scenarios.
+            </p>
+          </article>
+        </aside>
       </div>
-      <div class="item">
-        <h3>MSc in Theoretical Physics — Sapienza University of Rome</h3>
-        <div class="meta">Mar 2023 · 110/110 cum laude · Rome, Italy</div>
-        <p>Thesis: <em>Measuring the beauty and the charm of the Higgs boson</em> (ATLAS/LHC); ML methods for particle-flow reconstruction. Advisors: Prof. Marumi Kado; PhD Francesco Armando Di Bello.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="research" class="container section">
-    <h2><span class="bar" aria-hidden="true"></span> Research Experience</h2>
-    <div class="timeline">
-      <div class="item">
-        <h3>Bank of Italy — Applied Research Team (PhD Internship)</h3>
-        <div class="meta">2025–present · Rome, Italy</div>
-        <p>Causal inference for macro time series; exploration of multi‑agent models for policy and emergent behavior.</p>
-      </div>
-      <div class="item">
-        <h3>CERN, ATLAS experiment (Intern)</h3>
-        <div class="meta">2022–2023 · Geneva, Switzerland</div>
-        <p>AI for particle detection and detector simulation; contributed to ATLAS analyses of Higgs decays (b̄b, c̄c). Active contributor to ANA‑HIGG‑2020‑20‑INT1.</p>
-      </div>
-      <div class="item">
-        <h3>LNF — Frascati National Labs (Intern)</h3>
-        <div class="meta">2021 · Frascati, Italy</div>
-        <p>Plasma acceleration: interaction of electron beams with ionized gas (SPARC_LAB collaboration).</p>
-      </div>
-    </div>
-  </section>
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span>Research</span>
+            <h2>Workshops and publications</h2>
+          </div>
+          <p>Selected workshop papers and publications.</p>
+        </div>
 
-  <section id="publications" class="container section" aria-label="Publications">
-    <h2><span class="bar" aria-hidden="true"></span> Publications</h2>
-    <div class="pubs">
-      <a class="pub-card" href="https://arxiv.org/abs/2507.12257" target="_blank" rel="noopener">
-        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
-        <div class="pub-title">Robust Causal Discovery in Real‑World Time Series with Power‑Laws</div>
-        <div class="pub-meta">Under review · 2025</div>
-        <p>Power‑law spectral features to amplify causal signals across multiple discovery algorithms.</p>
-        
-      </a>
-      <a class="pub-card" href="https://arxiv.org/abs/2211.00000" target="_blank" rel="noopener">
-        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
-        <div class="pub-title">Reconstructing particles in jets using set transformer and hypergraph prediction networks</div>
-        <div class="pub-meta">European Physical Journal (Q1) · 2023</div>
-        <p>Set‑to‑set neural architectures for particle reconstruction in simulated calorimeters.</p>
-        
-      </a>
-      <a class="pub-card" href="https://arxiv.org/abs/2209.00000" target="_blank" rel="noopener">
-        <img class="pub-icon" src="/assets/icons/arxiv.svg" alt="arXiv" />
-        <div class="pub-title">Configurable calorimeter simulation for AI applications</div>
-        <div class="pub-meta">Machine Learning: Science and Technology (Q1) · 2023</div>
-        <p>A configurable calorimeter simulation supporting ML for HEP (reconstruction, fast simulation).</p>
-        
-      </a>
-    </div>
-  </section>
+        <div class="grid-3">
+          <article class="publication" data-reveal>
+            <div class="year">Under review &middot; 2025</div>
+            <h3>Robust Causal Discovery in Real-World Time Series with Power-Laws</h3>
+            <p>
+              A robust causal discovery method leveraging power-law spectral features of time series to amplify causal signals.
+            </p>
+          </article>
 
-  <section id="workshops" class="container section" aria-label="Workshops">
-    <h2><span class="bar" aria-hidden="true"></span> Workshops</h2>
-    <div class="pubs">
-      <div class="pub-card" role="article" aria-label="Causal Discovery for Stochastic Power‑Law Time Series — AIFIN @ ECAI 2025">
-        <div class="pub-title">Causal Discovery for Stochastic Power‑Law Time Series</div>
-        <div class="pub-meta">AIFIN @ ECAI 2025 (Workshop) · 2025</div>
-        <p>Plug‑in spectral filtering framework with gains on synthetic and real datasets.</p>
-      </div>
-      <div class="pub-card" role="article" aria-label="PLACy — Power‑law Causal Discovery — StatPhys29 Workshop">
-        <div class="pub-title">PLACy — Power‑law Causal Discovery</div>
-        <div class="pub-meta">Complexity in Economics & Finance (StatPhys29 Workshop) · 2025</div>
-        <p>Algorithm and experiments; interpretable frequency‑domain view for noisy series.</p>
-      </div>
-      <div class="pub-card" role="article" aria-label="HGPflow: Particle reconstruction as hyperedge prediction — NeurIPS 2022 Workshop">
-        <div class="pub-title">HGPflow: Particle reconstruction as hyperedge prediction</div>
-        <div class="pub-meta">NeurIPS 2022 Workshop — ML & Physical Sciences · 2022</div>
-        <p>Hypergraph incidence modeling with energy conservation for interpretable momentum estimation.</p>
-      </div>
-    </div>
-  </section>
+          <article class="publication" data-reveal>
+            <div class="year">AIFIN 2025 &middot; ECAI 2025 Satellite Workshop</div>
+            <h3>Causal Discovery for Stochastic Power Law Time Series</h3>
+            <p>
+              A plug-in spectral filtering framework that adapts to multiple causal discovery algorithms and improves results on synthetic and real datasets.
+            </p>
+          </article>
 
-  <section id="experience" class="container section">
-    <h2><span class="bar" aria-hidden="true"></span> Professional Experience</h2>
-    <div class="timeline">
-      <div class="item">
-        <h3>EY — Senior Data Scientist</h3>
-        <div class="meta">2024 · Rome, Italy</div>
-        <p>Work for major brands (e.g., Costa Crociere, Barilla) on financial analysis and AI solutions.</p>
-      </div>
-      <div class="item">
-        <h3>Leonardo — Data Scientist & AI Specialist</h3>
-        <div class="meta">2023–2024 · Rome, Italy</div>
-        <p>Projects: GCAP (next‑gen fighter program), EDOCC (defence cloud), ChatBot & forecasting, quantum annealing for traffic minimization.</p>
-      </div>
-    </div>
-  </section>
+          <article class="publication" data-reveal>
+            <div class="year">StatPhys29 Satellite Workshop &middot; 2025</div>
+            <h3>Placy - Power law causal Discovery</h3>
+            <p>
+              Presentation of PLACy, a newly developed causal discovery algorithm for power-law time series settings.
+            </p>
+          </article>
 
-  <section id="skills" class="container section" aria-label="Skills">
-    <h2><span class="bar" aria-hidden="true"></span> Skills</h2>
-    <style>
-      .skills{display:grid;gap:1rem;align-items:stretch}
-      @media (min-width: 700px){ .skills{grid-template-columns:repeat(2, minmax(0, 1fr));} }
-      .skill-cat{display:flex;flex-direction:column;justify-content:flex-start;height:100%;background:rgba(255,255,255,.03);border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:1rem}
-      .skill-cat h3{margin:.2rem 0 .8rem;font-size:1.05rem}
-      .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
-      .chip{padding:.42rem .7rem;border-radius:999px;border:1px solid rgba(148,163,184,.35);color:var(--fg);background:rgba(255,255,255,.02);font-weight:600;font-size:.92rem}
-      .chip.muted{color:var(--muted)}
-    </style>
-    <div class="skills">
-      <div class="skill-cat">
-        <h3>Programming</h3>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">C</span>
-          <span class="chip">C++</span>
-          <span class="chip">Julia</span>
-          <span class="chip">R</span>
-          <span class="chip">MATLAB</span>
+          <article class="publication" data-reveal>
+            <div class="year">European Physical Journal &middot; 2023</div>
+            <h3>Reconstructing particles in jets using set transformer and hypergraph prediction networks</h3>
+            <p>
+              Development of set-to-set neural architectures for particle reconstruction in fully simulated calorimeter events.
+            </p>
+          </article>
+
+          <article class="publication" data-reveal>
+            <div class="year">Machine Learning: Science and Technology &middot; 2023</div>
+            <h3>Configurable calorimeter simulation for AI applications</h3>
+            <p>
+              A configurable calorimeter simulation supporting machine learning workflows in high-energy physics.
+            </p>
+          </article>
+
+          <article class="publication" data-reveal>
+            <div class="year">NeurIPS 2022 Satellite Workshop</div>
+            <h3>HGPflow: Particle reconstruction as hyperedge prediction</h3>
+            <p>
+              Modeling particle reconstruction as a set-to-set mapping over hypergraph incidence structures.
+            </p>
+          </article>
         </div>
       </div>
-      <div class="skill-cat">
-        <h3>ML & Data</h3>
-        <div class="chips">
-          <span class="chip">PyTorch</span>
-          <span class="chip">TensorFlow</span>
-          <span class="chip">scikit‑learn</span>
-          <span class="chip">Keras</span>
-          <span class="chip">Time‑series</span>
-          <span class="chip">Causal inference</span>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span>Experience</span>
+            <h2>Research and professional work</h2>
+          </div>
+          <p>
+            My path combines academic research, public-sector applied research, scientific machine learning, and industry data science.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Feb 2026 - present</div>
+            <div>
+              <h3>Visiting PhD Student, Department of Computer Science</h3>
+              <div class="card-subtitle">University of Oxford &middot; Oxford, UK</div>
+              <p>
+                Developing and analyzing differentiable approaches to agent-based model simulations for economic and financial systems.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Jan 2025 - Aug 2025</div>
+            <div>
+              <h3>PhD Internship, Applied Research Team</h3>
+              <div class="card-subtitle">Bank of Italy &middot; Rome, Italy</div>
+              <p>
+                Studied causal inference techniques for macroeconomic time series and explored multi-agent system models for macroeconomic simulations.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">May 2024 - Nov 2024</div>
+            <div>
+              <h3>Senior Data Scientist</h3>
+              <div class="card-subtitle">Ernst &amp; Young S.p.A. &middot; Rome, Italy</div>
+              <p>
+                Worked on applied data science and AI projects in a professional consulting environment.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Jun 2023 - May 2024</div>
+            <div>
+              <h3>Data Scientist and AI Specialist</h3>
+              <div class="card-subtitle">Leonardo S.p.A. &middot; Rome, Italy</div>
+              <p>
+                Applied AI and data-driven methods in an industrial setting, translating research skills into operational work.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Mar 2022 - Mar 2023</div>
+            <div>
+              <h3>Intern, ATLAS Experiment</h3>
+              <div class="card-subtitle">CERN &middot; Geneva, Switzerland</div>
+              <p>
+                Contributed to AI systems for particle detection, detector simulation, and Higgs boson studies within the ATLAS collaboration.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Mar 2021 - Mar 2023</div>
+            <div>
+              <h3>Member</h3>
+              <div class="card-subtitle">INFN, National Institute of Nuclear Physics &middot; Rome, Italy</div>
+              <p>
+                Affiliated with the Italian physics community working across CERN and national laboratories.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Mar 2021 - Aug 2021</div>
+            <div>
+              <h3>Intern</h3>
+              <div class="card-subtitle">LNF, Frascati National Laboratories &middot; Frascati, Italy</div>
+              <p>
+                Researched plasma acceleration in the SPARC_LAB collaboration, studying the interaction of an electron beam with ionized gas.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="skill-cat">
-        <h3>Systems & Tools</h3>
-        <div class="chips">
-          <span class="chip">Linux</span>
-          <span class="chip">Docker</span>
-          <span class="chip">Git</span>
-          <span class="chip">SQL</span>
-          <span class="chip">ROOT</span>
-          <span class="chip">Gnuplot</span>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span>Education</span>
+            <h2>Academic background</h2>
+          </div>
+          <p>
+            A theoretical physics foundation continues to shape how I approach machine learning, modeling, and evidence.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel" data-reveal>
+            <h3 class="card-title">PhD in Computer Science</h3>
+            <div class="card-subtitle">Sapienza University of Rome &middot; Nov 2024 - present</div>
+            <ul class="list">
+              <li>Research focus on causality in time series data, with specific attention to financial markets.</li>
+              <li>Advisor: Prof. Novella Bartolini.</li>
+            </ul>
+          </article>
+
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Master's degree in Theoretical Physics</h3>
+            <div class="card-subtitle">Sapienza University of Rome &middot; Mar 2023</div>
+            <ul class="list">
+              <li>Graduated with 110/110 cum laude.</li>
+              <li>Thesis on Higgs boson decays and machine learning methods for particle flow reconstruction.</li>
+              <li>Advisor: Prof. Marumi Kado. Co-Advisor: PhD. Francesco Armando di Bello.</li>
+            </ul>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span>Skills</span>
+            <h2>Tools and languages</h2>
+          </div>
+          <p>
+            Technical range across programming, machine learning, research tooling, and multilingual collaboration.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Programming and platforms</h3>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">C</span>
+              <span class="chip">C++</span>
+              <span class="chip">R</span>
+              <span class="chip">Julia</span>
+              <span class="chip">MATLAB</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Git</span>
+              <span class="chip">ROOT</span>
+              <span class="chip">Gnuplot</span>
+            </div>
+          </article>
+
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Machine learning and systems</h3>
+            <div class="chips">
+              <span class="chip">PyTorch</span>
+              <span class="chip">TensorFlow</span>
+              <span class="chip">scikit-learn</span>
+              <span class="chip">Keras</span>
+              <span class="chip">Causal inference</span>
+              <span class="chip">Time series</span>
+              <span class="chip">MacOS</span>
+              <span class="chip">Linux</span>
+              <span class="chip">Windows</span>
+            </div>
+          </article>
+
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Languages</h3>
+            <div class="chips">
+              <span class="chip">Italian - Native</span>
+              <span class="chip">English - Advanced</span>
+              <span class="chip">French - Basic understanding</span>
+            </div>
+          </article>
+
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Working style</h3>
+            <p class="card-subtitle">
+              Analytical, research-oriented, and comfortable moving between theoretical modeling, experiments, and applied delivery.
+            </p>
+          </article>
         </div>
       </div>
-      <div class="skill-cat">
-        <h3>Spoken Languages</h3>
-        <div class="chips">
-          <span class="chip">Italian (native)</span>
-          <span class="chip">English (advanced)</span>
-          <span class="chip muted">French (basic)</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  
+  </main>
 
-  
-
-  <div class="container" style="padding:1rem 1rem 0; text-align:center">
-    <div class="icon-row" style="justify-content:center;">
-      <!-- Email -->
-      <div class="icon-btn" title="Email" aria-label="Email">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M2 6h20v12H2V6zm10 6L3.5 8h17L12 12z"/>
-        </svg>
-      </div>
-      <!-- GitHub -->
-      <div class="icon-btn" title="GitHub" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.5 3-.5s2 .2 3 .5c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/>
-        </svg>
-      </div>
-      <!-- LinkedIn -->
-      <div class="icon-btn" title="LinkedIn" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.8 2.6 4.8 5.9V21h-4v-5.7c0-1.4 0-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3V21H9z"/>
-        </svg>
-      </div>
-      <!-- ORCID -->
-      <div class="icon-btn" title="ORCID" aria-label="ORCID">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" opacity=".15"/>
-          <path d="M9 7h2v10H9zM15.4 10.2A2.8 2.8 0 0 0 12 13v.1a3 3 0 1 0 3-3zm0 3.9a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z"/>
-        </svg>
-      </div>
-      <!-- ResearchGate -->
-      <div class="icon-btn" title="ResearchGate" aria-label="ResearchGate">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" opacity=".15"/>
-          <path d="M8 7h5.2a3.3 3.3 0 1 1 0 6.6H11l2.2 3.4H11L8.8 13H9a2 2 0 0 0 0-4H8V7zm5.2 2H10v2h3.2a1 1 0 1 0 0-2z"/>
-        </svg>
-      </div>
-      <!-- X / Twitter -->
-      <div class="icon-btn" title="X / Twitter" aria-label="X / Twitter">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M14.7 3h3.2l-4.9 5.6L20 21h-6.2l-3.9-6-4.5 6H2.2l5.3-6.9L4 3h6.3l3.5 5.5L14.7 3zM9.4 5.1H7l7.5 11.8h2.4L9.4 5.1z"/>
-        </svg>
-      </div>
-      <!-- Google Scholar -->
-      <div class="icon-btn" title="Google Scholar" aria-label="Google Scholar">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 3 2 9l10 6 10-6-10-6zm0 9.6L6.4 9 12 5.9 17.6 9 12 12.6zM4 19h16v2H4z"/>
-        </svg>
-      </div>
-      <!-- arXiv -->
-      <div class="icon-btn" title="arXiv" aria-label="arXiv">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M3 6h18l-9 12L3 6zm3 0 6 8 6-8H6z"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <footer>
-    © <span id="y"></span> · Matteo Tusoni
+  <footer class="footer">
+    &copy; <span id="year"></span> Matteo Tusoni
   </footer>
 
   <script>
-    // Adjust header spacer dynamically & add active section highlight + scroll offsets
-    const header = document.querySelector('header');
-    const spacer = document.getElementById('header-spacer');
-    function setHeaderHeight(){
-      const h = header.offsetHeight || 64;
-      document.documentElement.style.setProperty('--header-h', h + 'px');
-      if(spacer) spacer.style.height = h + 'px';
-      // ensure titles land below the header
-      document.querySelectorAll('.section').forEach(sec=>{
-        sec.style.scrollMarginTop = (h + 12) + 'px';
-      });
-    }
-    window.addEventListener('load', setHeaderHeight);
-    window.addEventListener('resize', setHeaderHeight);
+    const year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
 
-    // Scrollspy: highlight current section link
-    const links = Array.from(document.querySelectorAll('header nav a'));
-    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        const id = '#' + e.target.id;
-        const link = map.get(id);
-        if(!link) return;
-        if(e.isIntersecting){
-          links.forEach(l=>l.classList.remove('active'));
-          link.classList.add('active');
-        }
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
       });
-    }, {rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))+10}px 0px -60% 0px`, threshold: 0.1});
-    document.querySelectorAll('section[id]').forEach(sec=>observer.observe(sec));
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll("[data-reveal]").forEach((node) => revealObserver.observe(node));
+
+    const navLinks = Array.from(document.querySelectorAll(".nav a"));
+    const sectionMap = new Map(navLinks.map((link) => [link.getAttribute("href"), link]));
+    const sections = document.querySelectorAll("section[id]");
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const active = sectionMap.get(`#${entry.target.id}`);
+        if (!active) return;
+        navLinks.forEach((link) => link.classList.remove("active"));
+        active.classList.add("active");
+      });
+    }, {
+      rootMargin: "-22% 0px -58% 0px",
+      threshold: 0.12
+    });
+
+    sections.forEach((section) => navObserver.observe(section));
   </script>
 </body>
 </html>
