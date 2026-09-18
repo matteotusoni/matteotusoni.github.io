@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matteo Tusoni | PhD Researcher in Computer Science</title>
+  <title>Matteo Tusoni | PhD Researcher in Artificial Intelligence</title>
   <meta
     name="description"
     content="Personal website of Matteo Tusoni, PhD researcher in computer science working on causal inference, financial time series, and scientific machine learning."
@@ -192,6 +192,60 @@
       max-width:16ch;
     }
 
+    .hero-social{
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+    }
+
+    .hero-social a{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.4);
+      transition:background .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .copy-tooltip{
+      position:absolute;
+      bottom:calc(100% + 8px);
+      left:50%;
+      transform:translateX(-50%) translateY(4px);
+      background:rgba(20,20,25,.92);
+      color:#fff;
+      font-size:.75rem;
+      font-weight:600;
+      letter-spacing:.02em;
+      padding:.3rem .6rem;
+      border-radius:6px;
+      white-space:nowrap;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+
+    .copy-tooltip.is-visible{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .hero-social a:hover{
+      background:rgba(255,255,255,.15);
+      border-color:rgba(255,255,255,.7);
+      transform:translateY(-1px);
+    }
+
+    .hero-social svg{
+      width:18px;
+      height:18px;
+      fill:currentColor;
+    }
+
     .hero-lead{
       margin:1.2rem 0 0;
       max-width:52ch;
@@ -343,8 +397,21 @@
     .timeline-item{
       padding:1.15rem 1.25rem;
       display:grid;
-      grid-template-columns:170px minmax(0, 1fr);
+      grid-template-columns:190px minmax(0, 1fr);
       gap:1rem;
+    }
+
+    a.timeline-item{
+      color:inherit;
+      text-decoration:none;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    a.timeline-item:hover,
+    a.timeline-item:focus-visible{
+      transform:translateY(-2px);
+      border-color:var(--accent);
+      box-shadow:0 10px 26px rgba(0,0,0,.08);
     }
 
     .timeline-date{
@@ -352,6 +419,7 @@
       font-size:.9rem;
       letter-spacing:.08em;
       text-transform:uppercase;
+      white-space:nowrap;
     }
 
     .timeline-item p{
@@ -359,15 +427,22 @@
       color:var(--muted);
     }
 
+    .pub-list{
+      display:grid;
+      gap:1rem;
+    }
+
     .publication{
       padding:0;
       overflow:hidden;
       display:flex;
-      flex-direction:column;
+      flex-direction:row;
     }
 
     .pub-thumb{
-      aspect-ratio:16 / 9;
+      flex:none;
+      width:360px;
+      aspect-ratio:4 / 3;
       background:#fff;
       overflow:hidden;
     }
@@ -383,6 +458,7 @@
       display:flex;
       flex-direction:column;
       flex:1;
+      min-width:0;
     }
 
     .publication .year{
@@ -488,6 +564,14 @@
       .grid-3{
         grid-template-columns:1fr;
       }
+
+      .publication{
+        flex-direction:column;
+      }
+
+      .pub-thumb{
+        width:100%;
+      }
     }
 
     @media (max-width: 560px){
@@ -512,20 +596,29 @@
     <symbol id="icon-github" viewBox="0 0 16 16">
       <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
     </symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 16 16">
+      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+    </symbol>
+    <symbol id="icon-scholar" viewBox="0 0 24 24">
+      <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.24 14.978 9.5 12 9.5c-2.977 0-5.548 1.74-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 16 16">
+      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 8.917l-1.326-.66-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+    </symbol>
   </svg>
 
   <header class="site-header">
     <div class="container">
       <a class="brand" href="#top" aria-label="Matteo Tusoni home">
         <strong>Matteo Tusoni</strong>
-        <span>PhD Researcher in Computer Science</span>
+        <span>PhD Researcher in Artificial Intelligence</span>
       </a>
 
       <nav class="nav" aria-label="Primary">
         <a href="#about">About Me</a>
-        <a href="#research">Research</a>
-        <a href="#experience">Experience</a>
         <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#experience">News</a>
       </nav>
     </div>
   </header>
@@ -536,13 +629,18 @@
         <img class="hero-avatar" src="Photos/Profile_Picture.jpg" alt="Portrait of Matteo Tusoni" />
         <div class="hero-content">
           <h1>Matteo Tusoni</h1>
-          <p class="hero-role">PhD Researcher in Computer Science</p>
+          <p class="hero-role">PhD Researcher in Artificial Intelligence</p>
           <p class="hero-lead">
             Researching causality in financial complex time series, with a background in theoretical physics
             and a focus on rigorous methods for understanding complex systems in macroeconomics and finance.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:matteotusoni@gmail.com">Email me</a>
+            <div class="hero-social" aria-label="Social profiles">
+              <a href="mailto:matteotusoni@gmail.com" aria-label="Email" id="email-link"><svg><use href="#icon-mail"></use></svg><span class="copy-tooltip" id="email-copy-tooltip" role="status" aria-live="polite">Copied!</span></a>
+              <a href="https://github.com/matteotusoni" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#icon-github"></use></svg></a>
+              <a href="https://www.linkedin.com/in/matteo-tusoni-782207199/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#icon-linkedin"></use></svg></a>
+              <a href="https://scholar.google.com/citations?user=wDIYHjgAAAAJ&hl=it" target="_blank" rel="noopener" aria-label="Google Scholar"><svg><use href="#icon-scholar"></use></svg></a>
+            </div>
             <a class="btn btn-secondary" href="PDFs/MatteoTusoni_CV.pdf" download>Download CV</a>
           </div>
         </div>
@@ -553,14 +651,14 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
+            <span>About</span>
             <h2>About Me</h2>
           </div>
-          <p>A theoretical physicist turned computer scientist, working at the intersection of causality and finance.</p>
         </div>
 
         <article class="panel" data-reveal>
           <p class="card-subtitle">
-            I am Matteo Tusoni, a PhD researcher in Computer Science at Sapienza University of Rome.
+            I am Matteo Tusoni, a PhD researcher in Artificial Intelligence at Sapienza University of Rome.
             My background is in theoretical physics, and my current work focuses on causal inference,
             financial time series, and rigorous methods for understanding complex systems in macroeconomics and finance.
             I develop advanced AI methodologies to uncover causality in time series data,
@@ -569,6 +667,38 @@
             emulate real data scenarios.
           </p>
         </article>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <span>Education</span>
+            <h2>Education</h2>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel" data-reveal>
+            <h3 class="card-title">PhD in Computer Science</h3>
+            <div class="card-subtitle">Sapienza University of Rome &middot; Nov 2024 - present</div>
+            <ul class="list">
+              <li>Research focus on causality in time series data, with specific attention to financial markets.</li>
+              <li>Advisor: Prof. Novella Bartolini.</li>
+            </ul>
+          </article>
+
+          <article class="panel" data-reveal>
+            <h3 class="card-title">Master's degree in Theoretical Physics</h3>
+            <div class="card-subtitle">Sapienza University of Rome &middot; Mar 2023</div>
+            <ul class="list">
+              <li>Graduated with 110/110 cum laude.</li>
+              <li>Thesis on Higgs boson decays and machine learning methods for particle flow reconstruction.</li>
+              <li>Advisor: Prof. Marumi Kado. Co-Advisor: PhD. Francesco Armando di Bello.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -581,7 +711,7 @@
           </div>
         </div>
 
-        <div class="grid-2" id="research-grid">
+        <div class="pub-list" id="research-grid">
           <article class="publication" data-reveal>
             <div class="pub-thumb">
               <img src="Photos/Placy.png" alt="Figure summarizing: Robust Causal Discovery in Real-World Time Series with Power-Laws" />
@@ -649,27 +779,57 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
-            <span>Experience</span>
-            <h2>Research and professional work</h2>
+            <span>News</span>
+            <h2>News</h2>
           </div>
-          <p>
-            My path combines academic research, public-sector applied research, scientific machine learning, and industry data science.
-          </p>
         </div>
 
         <div class="timeline">
-          <article class="timeline-item" data-reveal>
-            <div class="timeline-date">Feb 2026 - present</div>
+          <a class="timeline-item" data-reveal href="https://cfe.columbia.edu/content/mlss2" target="_blank" rel="noopener">
+            <div class="timeline-date">Jun 2026</div>
+            <div>
+              <h3>Machine Learning Summer School NYC 2026</h3>
+              <div class="card-subtitle">Columbia University &middot; New York, USA</div>
+              <p>
+                Fully funded participant in a competitive two-week residential programme in advanced machine learning.
+              </p>
+            </div>
+          </a>
+
+          <a class="timeline-item" data-reveal href="https://www.gresearch.com/spring-into-quant-finance/" target="_blank" rel="noopener">
+            <div class="timeline-date">Apr 2026</div>
+            <div>
+              <h3>G-Research &ndash; Spring into Quant Finance</h3>
+              <div class="card-subtitle">G-Research &middot; London, UK</div>
+              <p>
+                Fully funded participant, selected among the top 1% of applicants for a programme in quantitative finance and research.
+              </p>
+            </div>
+          </a>
+
+          <a class="timeline-item" data-reveal href="https://www.cs.ox.ac.uk/research/ai_ml/" target="_blank" rel="noopener">
+            <div class="timeline-date">Feb 2026 - May 2026</div>
             <div>
               <h3>Visiting PhD Student, Department of Computer Science</h3>
               <div class="card-subtitle">University of Oxford &middot; Oxford, UK</div>
               <p>
-                Developing and analyzing differentiable approaches to agent-based model simulations for economic and financial systems.
+                Developed and analyzed differentiable approaches to agent-based model simulations for economic and financial systems.
+              </p>
+            </div>
+          </a>
+
+          <article class="timeline-item" data-reveal>
+            <div class="timeline-date">Jan 2026</div>
+            <div>
+              <h3>Sapienza &ndash; Avvio alla Ricerca</h3>
+              <div class="card-subtitle">Sapienza University of Rome &middot; Rome, Italy</div>
+              <p>
+                Awarded competitive seed funding for an independent research project.
               </p>
             </div>
           </article>
 
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://www.bankit.art" target="_blank" rel="noopener">
             <div class="timeline-date">Jan 2025 - Aug 2025</div>
             <div>
               <h3>PhD Internship, Applied Research Team</h3>
@@ -678,9 +838,9 @@
                 Studied causal inference techniques for macroeconomic time series and explored multi-agent system models for macroeconomic simulations.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://www.ey.com/en_us" target="_blank" rel="noopener">
             <div class="timeline-date">May 2024 - Nov 2024</div>
             <div>
               <h3>Senior Data Scientist</h3>
@@ -689,9 +849,9 @@
                 Worked on applied data science and AI projects in a professional consulting environment.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://www.leonardo.com/en/" target="_blank" rel="noopener">
             <div class="timeline-date">Jun 2023 - May 2024</div>
             <div>
               <h3>Data Scientist and AI Specialist</h3>
@@ -700,9 +860,9 @@
                 Applied AI and data-driven methods in an industrial setting, translating research skills into operational work.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://atlas.cern" target="_blank" rel="noopener">
             <div class="timeline-date">Mar 2022 - Mar 2023</div>
             <div>
               <h3>Intern, ATLAS Experiment</h3>
@@ -711,20 +871,9 @@
                 Contributed to AI systems for particle detection, detector simulation, and Higgs boson studies within the ATLAS collaboration.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article class="timeline-item" data-reveal>
-            <div class="timeline-date">Mar 2021 - Mar 2023</div>
-            <div>
-              <h3>Member</h3>
-              <div class="card-subtitle">INFN, National Institute of Nuclear Physics &middot; Rome, Italy</div>
-              <p>
-                Affiliated with the Italian physics community working across CERN and national laboratories.
-              </p>
-            </div>
-          </article>
-
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://sparclab.lnf.infn.it" target="_blank" rel="noopener">
             <div class="timeline-date">Mar 2021 - Aug 2021</div>
             <div>
               <h3>Intern</h3>
@@ -733,44 +882,8 @@
                 Researched plasma acceleration in the SPARC_LAB collaboration, studying the interaction of an electron beam with ionized gas.
               </p>
             </div>
-          </article>
+          </a>
         </div>
-      </div>
-    </section>
-
-    <section id="education" class="section">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <div>
-            <span>Education</span>
-            <h2>Academic background</h2>
-          </div>
-          <p>
-            A theoretical physics foundation continues to shape how I approach machine learning, modeling, and evidence.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <article class="panel" data-reveal>
-            <h3 class="card-title">PhD in Computer Science</h3>
-            <div class="card-subtitle">Sapienza University of Rome &middot; Nov 2024 - present</div>
-            <ul class="list">
-              <li>Research focus on causality in time series data, with specific attention to financial markets.</li>
-              <li>Advisor: Prof. Novella Bartolini.</li>
-            </ul>
-          </article>
-
-          <article class="panel" data-reveal>
-            <h3 class="card-title">Master's degree in Theoretical Physics</h3>
-            <div class="card-subtitle">Sapienza University of Rome &middot; Mar 2023</div>
-            <ul class="list">
-              <li>Graduated with 110/110 cum laude.</li>
-              <li>Thesis on Higgs boson decays and machine learning methods for particle flow reconstruction.</li>
-              <li>Advisor: Prof. Marumi Kado. Co-Advisor: PhD. Francesco Armando di Bello.</li>
-            </ul>
-          </article>
-        </div>
-
       </div>
     </section>
 
@@ -796,22 +909,39 @@
 
     const navLinks = Array.from(document.querySelectorAll(".nav a"));
     const sectionMap = new Map(navLinks.map((link) => [link.getAttribute("href"), link]));
-    const sections = document.querySelectorAll("section[id]");
+    const sections = Array.from(document.querySelectorAll("section[id]"));
+    const header = document.querySelector(".site-header");
 
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const active = sectionMap.get(`#${entry.target.id}`);
-        if (!active) return;
-        navLinks.forEach((link) => link.classList.remove("active"));
-        active.classList.add("active");
+    const updateActiveNav = () => {
+      const offset = (header ? header.offsetHeight : 0) + 24;
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top - offset <= 0) {
+          current = section;
+        }
+      }
+      const active = sectionMap.get(`#${current.id}`);
+      if (!active) return;
+      navLinks.forEach((link) => link.classList.remove("active"));
+      active.classList.add("active");
+    };
+
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    window.addEventListener("resize", updateActiveNav);
+    updateActiveNav();
+
+    const emailLink = document.getElementById("email-link");
+    const emailTooltip = document.getElementById("email-copy-tooltip");
+
+    if (emailLink && emailTooltip) {
+      emailLink.addEventListener("click", () => {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText("matteotusoni@gmail.com").then(() => {
+          emailTooltip.classList.add("is-visible");
+          setTimeout(() => emailTooltip.classList.remove("is-visible"), 1500);
+        }).catch(() => {});
       });
-    }, {
-      rootMargin: "-22% 0px -58% 0px",
-      threshold: 0.12
-    });
-
-    sections.forEach((section) => navObserver.observe(section));
+    }
 
     const researchGrid = document.getElementById("research-grid");
     const researchToggleBtn = document.getElementById("research-toggle-btn");
