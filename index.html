@@ -156,7 +156,6 @@
     }
 
     .panel,
-    .timeline-item,
     .publication{
       background:var(--surface);
       border:1px solid var(--line);
@@ -340,18 +339,7 @@
     }
 
     .section-head{
-      display:grid;
-      grid-template-columns:220px minmax(0, 1fr);
-      gap:1.2rem;
       margin-bottom:1.2rem;
-      align-items:start;
-    }
-
-    .section-head span{
-      color:var(--muted);
-      font-size:.84rem;
-      letter-spacing:.14em;
-      text-transform:uppercase;
     }
 
     .section-head p{
@@ -391,35 +379,64 @@
 
     .timeline{
       display:grid;
-      gap:.9rem;
+      gap:0;
+      margin-left:.2rem;
+      padding-left:1.8rem;
+      border-left:2px solid var(--line);
     }
 
     .timeline-item{
-      padding:1.15rem 1.25rem;
+      position:relative;
+      padding:1.3rem 0;
       display:grid;
-      grid-template-columns:190px minmax(0, 1fr);
+      grid-template-columns:150px minmax(0, 1fr);
       gap:1rem;
+      border-bottom:1px solid var(--line);
+    }
+
+    .timeline-item:last-child{
+      border-bottom:none;
+      padding-bottom:.6rem;
+    }
+
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      top:1.5rem;
+      left:calc(-1.8rem - 5px);
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--surface);
+      border:2px solid var(--accent);
     }
 
     a.timeline-item{
       color:inherit;
       text-decoration:none;
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
-    a.timeline-item:hover,
-    a.timeline-item:focus-visible{
-      transform:translateY(-2px);
-      border-color:var(--accent);
-      box-shadow:0 10px 26px rgba(0,0,0,.08);
+    a.timeline-item h3{
+      transition:color .2s ease;
+    }
+
+    a.timeline-item:hover::before,
+    a.timeline-item:focus-visible::before{
+      background:var(--accent);
+    }
+
+    a.timeline-item:hover h3,
+    a.timeline-item:focus-visible h3{
+      color:var(--accent);
     }
 
     .timeline-date{
       color:var(--muted);
-      font-size:.9rem;
+      font-size:.82rem;
       letter-spacing:.08em;
       text-transform:uppercase;
       white-space:nowrap;
+      padding-top:.2rem;
     }
 
     .timeline-item p{
@@ -555,9 +572,20 @@
         height:140px;
       }
 
-      .panel,
-      .timeline-item{
+      .panel{
         padding:1.1rem;
+      }
+
+      .timeline{
+        padding-left:1.2rem;
+      }
+
+      .timeline-item{
+        padding:1.1rem 0;
+      }
+
+      .timeline-item::before{
+        left:calc(-1.2rem - 5px);
       }
 
       .grid-2,
@@ -651,20 +679,19 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
-            <span>About</span>
             <h2>About Me</h2>
           </div>
         </div>
 
-        <article class="panel" data-reveal>
+        <article data-reveal>
           <p class="card-subtitle">
-            I am Matteo Tusoni, a PhD researcher in Artificial Intelligence at Sapienza University of Rome.
-            My background is in theoretical physics, and my current work focuses on causal inference,
-            financial time series, and rigorous methods for understanding complex systems in macroeconomics and finance.
-            I develop advanced AI methodologies to uncover causality in time series data,
-            with particular attention to financial markets and economic systems, and I build
-            agentic AI simulations for financial markets and new agentic AI techniques to
-            emulate real data scenarios.
+            Hi! I&rsquo;m Matteo Tusoni, a PhD researcher in Artificial Intelligence at Sapienza University of Rome.
+          </p>
+          <p class="card-subtitle">
+            My research focuses on developing AI methods for understanding complex systems. I work across machine learning, causal discovery, time series analysis, and agent-based modelling.
+          </p>
+          <p class="card-subtitle">
+            I currently apply these ideas to financial and macroeconomic systems.
           </p>
         </article>
       </div>
@@ -674,7 +701,6 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
-            <span>Education</span>
             <h2>Education</h2>
           </div>
         </div>
@@ -706,7 +732,6 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
-            <span>Research</span>
             <h2>Publications</h2>
           </div>
         </div>
@@ -779,12 +804,22 @@
       <div class="container">
         <div class="section-head" data-reveal>
           <div>
-            <span>News</span>
             <h2>News</h2>
           </div>
         </div>
 
         <div class="timeline">
+          <a class="timeline-item" data-reveal href="https://arxiv.org/abs/2507.12257" target="_blank" rel="noopener">
+            <div class="timeline-date">Jul 2026</div>
+            <div>
+              <h3>ICML 2026</h3>
+              <div class="card-subtitle">Seoul, South Korea</div>
+              <p>
+                Presented &ldquo;Robust Causal Discovery in Real-World Time Series with Power-Laws&rdquo; as a Spotlight paper, ranked in the top 2% of submissions.
+              </p>
+            </div>
+          </a>
+
           <a class="timeline-item" data-reveal href="https://cfe.columbia.edu/content/mlss2" target="_blank" rel="noopener">
             <div class="timeline-date">Jun 2026</div>
             <div>
@@ -810,7 +845,7 @@
           <a class="timeline-item" data-reveal href="https://www.cs.ox.ac.uk/research/ai_ml/" target="_blank" rel="noopener">
             <div class="timeline-date">Feb 2026 - May 2026</div>
             <div>
-              <h3>Visiting PhD Student, Department of Computer Science</h3>
+              <h3>Visiting Researcher, Department of Computer Science</h3>
               <div class="card-subtitle">University of Oxford &middot; Oxford, UK</div>
               <p>
                 Developed and analyzed differentiable approaches to agent-based model simulations for economic and financial systems.
@@ -818,16 +853,27 @@
             </div>
           </a>
 
-          <article class="timeline-item" data-reveal>
+          <a class="timeline-item" data-reveal href="https://www.uniroma1.it/en/pagina/bando-la-ricerca-scientifica-di-ateneo" target="_blank" rel="noopener">
             <div class="timeline-date">Jan 2026</div>
             <div>
-              <h3>Sapienza &ndash; Avvio alla Ricerca</h3>
+              <h3>Sapienza&rsquo;s Call for Scientific Research Grant</h3>
               <div class="card-subtitle">Sapienza University of Rome &middot; Rome, Italy</div>
               <p>
                 Awarded competitive seed funding for an independent research project.
               </p>
             </div>
-          </article>
+          </a>
+
+          <a class="timeline-item" data-reveal href="https://sites.google.com/view/ECAI25-ai-fin" target="_blank" rel="noopener">
+            <div class="timeline-date">Oct 2025</div>
+            <div>
+              <h3>ECAI 2025 &ndash; AIFin Satellite Workshop</h3>
+              <div class="card-subtitle">Bologna, Italy</div>
+              <p>
+                Presented &ldquo;Causal Discovery for Stochastic Power Law Time Series&rdquo; at the Workshop on AI in Finance.
+              </p>
+            </div>
+          </a>
 
           <a class="timeline-item" data-reveal href="https://www.bankit.art" target="_blank" rel="noopener">
             <div class="timeline-date">Jan 2025 - Aug 2025</div>
@@ -836,6 +882,17 @@
               <div class="card-subtitle">Bank of Italy &middot; Rome, Italy</div>
               <p>
                 Studied causal inference techniques for macroeconomic time series and explored multi-agent system models for macroeconomic simulations.
+              </p>
+            </div>
+          </a>
+
+          <a class="timeline-item" data-reveal href="https://sites.google.com/view/cef-statphys29/home" target="_blank" rel="noopener">
+            <div class="timeline-date">Jul 2025</div>
+            <div>
+              <h3>Complexity in Economics &amp; Finance &ndash; StatPhys29 Satellite Workshop</h3>
+              <div class="card-subtitle">CREF &middot; Rome, Italy</div>
+              <p>
+                Presented &ldquo;Placy &ndash; Power law causal Discovery.&rdquo; Rome hosted satellite workshops for the StatPhys29 conference in July 2025, while the main international statistical physics conference took place in Florence.
               </p>
             </div>
           </a>
