@@ -348,6 +348,11 @@
     }
 
     .section-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:1rem;
       margin-bottom:1.2rem;
     }
 
@@ -355,6 +360,51 @@
       margin:.35rem 0 0;
       color:var(--muted);
       max-width:64ch;
+    }
+
+    .coauthors-dropdown{
+      position:relative;
+    }
+
+    .coauthors-toggle .coauthors-caret{
+      transition:transform .2s ease;
+    }
+
+    .coauthors-toggle[aria-expanded="true"] .coauthors-caret{
+      transform:rotate(180deg);
+    }
+
+    .coauthors-list{
+      position:absolute;
+      top:calc(100% + .5rem);
+      right:0;
+      z-index:10;
+      margin:0;
+      padding:.7rem 1rem;
+      list-style:none;
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      min-width:240px;
+      max-height:260px;
+      overflow-y:auto;
+      display:none;
+    }
+
+    .coauthors-list.is-open{
+      display:block;
+    }
+
+    .coauthors-list li{
+      padding:.35rem 0;
+      color:var(--muted);
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+
+    .coauthors-list li + li{
+      border-top:1px solid var(--line);
     }
 
     .grid-2,
@@ -609,6 +659,12 @@
       .pub-thumb{
         width:100%;
       }
+
+      .coauthors-list{
+        left:0;
+        right:0;
+        min-width:0;
+      }
     }
 
     @media (max-width: 560px){
@@ -743,6 +799,32 @@
           <div>
             <h2>Publications</h2>
           </div>
+          <div class="coauthors-dropdown">
+            <button type="button" class="btn btn-secondary btn-sm coauthors-toggle" id="coauthors-toggle-btn" aria-expanded="false" aria-controls="coauthors-list">
+              Co-authors
+              <svg class="coauthors-caret" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+            <ul class="coauthors-list" id="coauthors-list">
+              <li>Aldo Glielmo</li>
+              <li>Andrea Coletta</li>
+              <li>Anna Ivina</li>
+              <li>Anton Charkin-Gorbulin</li>
+              <li>Eilam Gross</li>
+              <li>Etienne Dreyer</li>
+              <li>Francesco Armando Di Bello</li>
+              <li>Giuseppe Masi</li>
+              <li>Jonathan Shlomi</li>
+              <li>Kyle Cranmer</li>
+              <li>Lorenzo Santi</li>
+              <li>Lukas Heinrich</li>
+              <li>Marumi Kado</li>
+              <li>Nilotpal Kakati</li>
+              <li>Novella Bartolini</li>
+              <li>Patrick Rieck</li>
+              <li>Sanmay Ganguly</li>
+              <li>Viviana Arrigoni</li>
+            </ul>
+          </div>
         </div>
 
         <div class="pub-list" id="research-grid">
@@ -759,7 +841,7 @@
               <div class="pub-actions">
                 <a class="btn btn-secondary btn-sm" href="https://arxiv.org/abs/2507.12257" target="_blank" rel="noopener">Link</a>
                 <a class="btn btn-secondary btn-sm" href="https://github.com/matteotusoni/PLACy" target="_blank" rel="noopener"><svg><use href="#icon-github"></use></svg>GitHub</a>
-                <button type="button" class="btn btn-secondary btn-sm btn-cite" data-cite="@misc{tusoni2026robustcausaldiscoveryrealworld,&#10;      title={Robust Causal Discovery in Real-World Time Series with Power-Laws}, &#10;      author={Matteo Tusoni and Giuseppe Masi and Andrea Coletta and Aldo Glielmo and Viviana Arrigoni and Novella Bartolini},&#10;      year={2026},&#10;      eprint={2507.12257},&#10;      archivePrefix={arXiv},&#10;      primaryClass={cs.LG},&#10;      url={https://arxiv.org/abs/2507.12257}, &#10;}">Cite</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-cite" data-cite="@InProceedings{pmlr-v306-tusoni26a,&#10;  title = {Robust Causal Discovery in Real-World Time Series with Power-Laws},&#10;  author = {Tusoni, Matteo and Masi, Giuseppe and Coletta, Andrea and Glielmo, Aldo and Arrigoni, Viviana and Bartolini, Novella},&#10;  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},&#10;  pages = {122775--122807},&#10;  year = {2026},&#10;  editor = {Zhang, Tong and Dudik, Miroslav and Jaggi, Martin and Agarwal, Alekh and Li, Sharon and Schuurmans, Dale and Zhu, Jerry and Berkenkamp, Felix and Dong, Hanze and Bietti, Alberto},&#10;  volume = {306},&#10;  series = {Proceedings of Machine Learning Research},&#10;  month = {06--11 Jul},&#10;  publisher = {PMLR},&#10;  pdf = {https://raw.githubusercontent.com/mlresearch/v306/main/assets/tusoni26a/tusoni26a.pdf},&#10;  url = {https://proceedings.mlr.press/v306/tusoni26a.html},&#10;  abstract = {Exploring causal relationships in stochastic time series is a challenging yet crucial task with a vast range of applications, including finance, economics, neuroscience, and climate science. Many algorithms for Causal Discovery (CD) have been proposed; however, they often exhibit a high sensitivity to noise, resulting in spurious causal inferences on real data. In this paper, we observe that the frequency spectra of many real-world time series follow a power-law distribution, notably due to an inherent self-organizing behavior. Leveraging this insight, we build a robust CD method based on the extraction of power-law spectral features that amplify genuine causal signals. Our method consistently outperforms state-of-the-art alternatives on both synthetic benchmarks and real-world datasets with known causal structures, demonstrating its robustness and practical relevance.}&#10;}">Cite</button>
               </div>
             </div>
           </article>
@@ -1017,6 +1099,32 @@
         const expanded = researchGrid.classList.toggle("is-expanded");
         researchToggleBtn.textContent = expanded ? "Show fewer publications" : "See all publications";
         researchToggleBtn.setAttribute("aria-expanded", String(expanded));
+      });
+    }
+
+    const coauthorsToggleBtn = document.getElementById("coauthors-toggle-btn");
+    const coauthorsList = document.getElementById("coauthors-list");
+
+    if (coauthorsToggleBtn && coauthorsList) {
+      const closeCoauthors = () => {
+        coauthorsList.classList.remove("is-open");
+        coauthorsToggleBtn.setAttribute("aria-expanded", "false");
+      };
+
+      coauthorsToggleBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = coauthorsList.classList.toggle("is-open");
+        coauthorsToggleBtn.setAttribute("aria-expanded", String(open));
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!coauthorsList.classList.contains("is-open")) return;
+        if (event.target === coauthorsToggleBtn || coauthorsList.contains(event.target)) return;
+        closeCoauthors();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeCoauthors();
       });
     }
 
