@@ -403,6 +403,15 @@
       white-space:nowrap;
     }
 
+    .coauthors-list li a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .coauthors-list li a:hover{
+      text-decoration:underline;
+    }
+
     .coauthors-list li + li{
       border-top:1px solid var(--line);
     }
@@ -542,6 +551,18 @@
       font-size:.88rem;
       text-transform:uppercase;
       letter-spacing:.08em;
+    }
+
+    .pub-authors{
+      margin:.35rem 0 0;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .pub-authors .me{
+      color:var(--ink);
+      text-decoration:underline;
+      font-weight:600;
     }
 
     .publication p{
@@ -805,24 +826,24 @@
               <svg class="coauthors-caret" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
             </button>
             <ul class="coauthors-list" id="coauthors-list">
-              <li>Aldo Glielmo</li>
-              <li>Andrea Coletta</li>
+              <li><a href="https://scholar.google.com/citations?user=iibZFkYAAAAJ&hl=en" target="_blank" rel="noopener">Eilam Gross</a></li>
+              <li><a href="https://scholar.google.com/citations?user=EZjSxgwAAAAJ&hl=en" target="_blank" rel="noopener">Kyle Cranmer</a></li>
+              <li><a href="https://scholar.google.com/citations?user=FacGNwsAAAAJ&hl=en" target="_blank" rel="noopener">Sanmay Ganguly</a></li>
+              <li><a href="https://scholar.google.com/citations?user=svzOc0UAAAAJ&hl=en" target="_blank" rel="noopener">Lukas Heinrich</a></li>
+              <li><a href="https://scholar.google.com/citations?user=tSv2TsEAAAAJ&hl=en" target="_blank" rel="noopener">Jonathan Shlomi</a></li>
+              <li><a href="https://scholar.google.com/citations?user=8ZIn7fYAAAAJ&hl=en" target="_blank" rel="noopener">Novella Bartolini</a></li>
+              <li><a href="https://scholar.google.com/citations?user=ux0SMq4AAAAJ&hl=en" target="_blank" rel="noopener">Aldo Glielmo</a></li>
+              <li><a href="https://scholar.google.com/citations?user=yiLW210AAAAJ&hl=en" target="_blank" rel="noopener">Etienne Dreyer</a></li>
+              <li><a href="https://scholar.google.com/citations?user=O50E4VMAAAAJ&hl=en" target="_blank" rel="noopener">Andrea Coletta</a></li>
+              <li><a href="https://scholar.google.com/citations?user=HeeE_DwAAAAJ&hl=en" target="_blank" rel="noopener">Viviana Arrigoni</a></li>
+              <li><a href="https://scholar.google.com/citations?user=WdfBrXAAAAAJ&hl=en" target="_blank" rel="noopener">Anton Charkin-Gorbulin</a></li>
+              <li><a href="https://scholar.google.com/citations?user=WMu-pA8AAAAJ&hl=en" target="_blank" rel="noopener">Giuseppe Masi</a></li>
               <li>Anna Ivina</li>
-              <li>Anton Charkin-Gorbulin</li>
-              <li>Eilam Gross</li>
-              <li>Etienne Dreyer</li>
               <li>Francesco Armando Di Bello</li>
-              <li>Giuseppe Masi</li>
-              <li>Jonathan Shlomi</li>
-              <li>Kyle Cranmer</li>
               <li>Lorenzo Santi</li>
-              <li>Lukas Heinrich</li>
               <li>Marumi Kado</li>
               <li>Nilotpal Kakati</li>
-              <li>Novella Bartolini</li>
               <li>Patrick Rieck</li>
-              <li>Sanmay Ganguly</li>
-              <li>Viviana Arrigoni</li>
             </ul>
           </div>
         </div>
@@ -835,6 +856,7 @@
             <div class="pub-body">
               <div class="year">Spotlight &middot; 2026</div>
               <h3>Robust Causal Discovery in Real-World Time Series with Power-Laws</h3>
+              <p class="pub-authors"><span class="me">Matteo Tusoni</span>, Giuseppe Masi, Andrea Coletta, Aldo Glielmo, Viviana Arrigoni, Novella Bartolini</p>
               <p>
                 A robust causal discovery method leveraging power-law spectral features of time series to amplify causal signals.
               </p>
@@ -853,6 +875,7 @@
             <div class="pub-body">
               <div class="year">European Physical Journal &middot; 2023</div>
               <h3>Reconstructing particles in jets using set transformer and hypergraph prediction networks</h3>
+              <p class="pub-authors">Francesco Armando Di Bello, Etienne Dreyer, Sanmay Ganguly, Eilam Gross, Lukas Heinrich, Anna Ivina, Marumi Kado, Nilotpal Kakati, Lorenzo Santi, Jonathan Shlomi, <span class="me">Matteo Tusoni</span></p>
               <p>
                 Development of set-to-set neural architectures for particle reconstruction in fully simulated calorimeter events.
               </p>
@@ -871,6 +894,7 @@
             <div class="pub-body">
               <div class="year">Machine Learning: Science and Technology &middot; 2023</div>
               <h3>Configurable calorimeter simulation for AI applications</h3>
+              <p class="pub-authors">Anton Charkin-Gorbulin, Kyle Cranmer, Francesco Armando Di Bello, Etienne Dreyer, Sanmay Ganguly, Eilam Gross, Lukas Heinrich, Marumi Kado, Nilotpal Kakati, Patrick Rieck, Lorenzo Santi, <span class="me">Matteo Tusoni</span></p>
               <p>
                 A configurable calorimeter simulation supporting machine learning workflows in high-energy physics.
               </p>
@@ -918,6 +942,17 @@
               <div class="card-subtitle">Columbia University &middot; New York, USA</div>
               <p>
                 Fully funded participant in a competitive two-week residential programme in advanced machine learning.
+              </p>
+            </div>
+          </a>
+
+          <a class="timeline-item" data-reveal href="https://www.di.uniroma1.it/" target="_blank" rel="noopener">
+            <div class="timeline-date">May 2026</div>
+            <div>
+              <h3>EcoIDEA &ndash; Eco-friendly Inference in Distributed Learning</h3>
+              <div class="card-subtitle">Sapienza University of Rome &middot; Rome, Italy</div>
+              <p>
+                Listed participant in this Sapienza-funded research project (2026&ndash;2029) on energy- and resource-efficient inference in distributed AI systems, awarded under the Sapienza &ldquo;Ricerca scientifica 2025 &ndash; Progetti Grandi&rdquo; call. Scientific coordinator: Prof. Salvatore Pontarelli.
               </p>
             </div>
           </a>
